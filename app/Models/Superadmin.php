@@ -10,4 +10,16 @@ use Illuminate\Database\Eloquent\Model;
 class Superadmin extends Authenticatable
 {
     use HasFactory, Notifiable;
+    
+    protected $fillable = [
+        'firstname',
+        'middlename',
+        'lastname',
+        'email',
+        'contact',
+        'photo',
+        'password',
+        'isactive',
+    ];
+    
 }

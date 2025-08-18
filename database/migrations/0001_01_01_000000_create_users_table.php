@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -13,11 +14,43 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('employeenumber');
+            $table->string('clientname')->nullable();
+            $table->string('branchname')->nullable();
+            $table->string('departmentname')->nullable();
+            $table->string('position')->nullable();
+            $table->string('firstname');
+            $table->string('middlename')->nullable();
+            $table->string('lastname');
+            $table->string('suffix')->nullable();
+            $table->string('dateofbirth')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('assumptiondate')->nullable();
+            $table->string('startdate')->nullable();
+            $table->string('enddate')->nullable();
+            $table->string('templatename')->nullable();
+            $table->string('hiretype')->nullable();
+            $table->string('wagetype')->nullable();
+            $table->string('paymode')->nullable();
+            $table->string('salaryrate')->nullable();
+            $table->string('billingrate')->nullable();
+            $table->string('positioncategory')->nullable();
+            $table->string('leavecredits')->nullable();
+            $table->string('civilstatus')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('tin')->nullable();
+            $table->string('sssnumber')->nullable();
+            $table->string('phicnumber')->nullable();
+            $table->string('hdmfnumber')->nullable();
+            $table->string('lastpaydate')->nullable();
+            $table->string('region')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default(Hash::make('dbpsc'));
             $table->rememberToken();
+            $table->string('role')->default('user'); // Default role for users
+            $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended
+            $table->string('token')->nullable(); // For password reset or API token
             $table->timestamps();
         });
 

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Clientadmin extends AUthenticable implements MustVerifyEmail
+class Clientadmin extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -19,9 +18,16 @@ class Clientadmin extends AUthenticable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'middlename',
+        'lastname',
         'email',
+        'contact',
+        'photo',
         'password',
+        'role',
+        'clientname',
+        'isactive',
     ];
 
     /**

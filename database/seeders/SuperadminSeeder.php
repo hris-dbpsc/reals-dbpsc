@@ -15,12 +15,13 @@ class SuperadminSeeder extends Seeder
     public function run(): void
     {
         $superadmin = new Superadmin();
-        $superadmin->employee_number = '3895-F2014';
+        $superadmin->employeenumber = '3895-F2014';
         $superadmin->firstname = 'Symon';
         $superadmin->middlename = 'Lagman';
         $superadmin->lastname = 'Magtoto';
         $superadmin->email = 'hris@dbpsc.com.ph';
         $superadmin->password = Hash::make('adminadmin');
+        $superadmin->isactive = '1'; // 1 for active, 0 for inactive, 2 for suspended"
         $superadmin->token = '';
         $superadmin->save();
     }

@@ -13,8 +13,19 @@ return new class extends Migration
     {
         Schema::create('clientadmins', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
+            $table->string('middlename')->nullable();
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->string('contact')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('password');
+            $table->string('role')->default('clientadmin');
+            $table->string('clientname')->nullable();
+            $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended
+            $table->string('token')->nullable();
             $table->timestamps();
-        });
+            });
     }
 
     /**

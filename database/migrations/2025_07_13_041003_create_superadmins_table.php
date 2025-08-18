@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('superadmins', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_number');
+            $table->string('employeenumber');
             $table->string('firstname');
-            $table->string('middlename');
+            $table->string('middlename')->nullable();
             $table->string('lastname');
             $table->string('email')->unique();
             $table->string('contact')->nullable();
             $table->string('photo')->nullable();
             $table->string('password');
-            $table->string('token');
+            $table->string('role')->default('superadmin');
+            $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended
+            $table->string('token')->nullable();
             $table->timestamps();
-        });
+            });
     }
 
     /**
