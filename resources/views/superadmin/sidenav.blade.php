@@ -1,0 +1,119 @@
+<div id="layoutSidenav_nav">
+    <nav class="sidenav shadow-right sidenav-light">
+        <div class="sidenav-menu">
+            <div class="nav accordion" id="accordionSidenav">
+                <!-- Sidenav Menu Heading (Core)-->
+                <a class="nav-link" href="#!">
+                    <div class="sidenav-menu-heading">Core</div>
+                </a>
+                <!-- Sidenav Accordion (Dashboard)-->
+                <a class="nav-link" href="{{ route('superadmin_dashboard') }}">
+                    <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                    Dashboard
+                </a>
+                <!-- Sidenav User Management -->
+                <a class="nav-link" href="{{ route('superadmin_usermanagement') }}">
+                    <div class="sidenav-menu-heading">User Management</div>
+                </a>
+                <!-- Sidenav Accordion (Pages)-->
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                    View Users
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                        <!-- Nested Sidenav Accordion (Pages -> Account)-->
+                        <a class="nav-link" href="{{ route('superadmin_usersuperadmin') }}">
+                            <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
+                            Superadmin
+                        </a>
+                        <a class="nav-link" href="{{ route('superadmin_useradmin') }}">
+                            <div class="nav-link-icon"><i data-feather="user"></i></div>
+                            Admin
+                        </a>
+                        <a class="nav-link" href="{{ route('superadmin_userclientadmin') }}">
+                            <div class="nav-link-icon"><i data-feather="user-check"></i></div>
+                            Client Admin
+                        </a>
+                        <a class="nav-link" href="{{ route('superadmin_useremployee') }}">
+                            <div class="nav-link-icon"><i data-feather="users"></i></div>
+                            Users
+                        </a>
+                    </nav>
+                </div>
+                <!-- Sidenav Client Management-->
+                <a class="nav-link" href="{{ route('superadmin_clientmanagement') }}">
+                    <div class="sidenav-menu-heading">Client Management</div>
+                </a>
+                <!-- Sidenav Accordion (Layout)-->
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#viewclients" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="nav-link-icon"><i data-feather="globe"></i></div>
+                    View Clients
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="viewclients" data-bs-parent="#accordionSidenavPagesMenu">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('superadmin_clients') }}">Clients</a>
+                        <a class="nav-link" href="{{ route('superadmin_branches') }}"">Branches</a>
+                    </nav>
+                </div>
+
+                <!-- Sidenav Applications-->
+                <a class=" nav-link" href="{{ route('superadmin_apps') }}">
+                            <div class="sidenav-menu-heading">Applications</div>
+                        </a>
+                        <!-- Sidenav Link (Charts)-->
+                        <a class="nav-link" href="">
+                            <div class="nav-link-icon"><i data-feather="user"></i></div>
+                            People
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="users"></i></div>
+                            WorkForce
+                        </a>
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="calendar"></i></div>
+                            TimeOff
+                        </a>
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="{{ route('superadmin_applocator') }}">
+                            <div class="nav-link-icon"><i data-feather="map-pin"></i></div>
+                            Locator
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="message-square"></i></div>
+                            WorkChat
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="clock"></i></div>
+                            TimeLog
+                        </a>
+                </div>
+            </div>
+            <!-- Sidenav Footer-->
+            <div class="sidenav-footer">
+                <div class="sidenav-footer-content">
+                    <div class="sidenav-footer-subtitle">Logged in as:</div>
+                    <div class="sidenav-footer-title">
+                        {{ Auth::guard('superadmin')->user()->firstname }} {{ Auth::guard('superadmin')->user()->lastname }}
+                        <span class="badge bg-primary" style="font-size: 0.7em; margin-left: 6px;">
+                            {{ ucfirst(Auth::guard('superadmin')->user()->role ?? 'Superadmin') }}
+                        </span>
+                    </div>
+                    <div class="text-muted" style="font-size: 0.8em; font-style: italic;">
+                        {{ Auth::guard('superadmin')->user()->email }}
+                    </div>
+                    <div class="text-muted" style="font-size: 0.8em;">
+                        <!-- Device: {{ php_uname('n') }}<br> -->
+                    </div>
+                </div>
+            </div>
+    </nav>
+</div>

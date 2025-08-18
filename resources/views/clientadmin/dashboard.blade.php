@@ -1,0 +1,1 @@
+this is the client admin dashboard view file.
