@@ -61,15 +61,15 @@ class SuperadminController extends Controller
     {
         $branches = Branches::get(); // or your query to get branches
         $clients = Client::get(); // or your query to get clients
-        return view('superadmin.applocatorclient', compact('clients', 'branches'));
+        $users = User::where('role', 'user')->get();
+        return view('superadmin.applocatorclient', compact('clients', 'branches', 'users'));
     }
     public function applocatorbranch()
     {
-        $branches = Branches::leftJoin('clients', 'branches.clientname', '=', 'clients.clientname')
-            ->select('branches.*', 'clients.clientphoto')
-            ->get();
-        $clients = Client::get();
-        return view('superadmin.applocatorbranch', compact('branches', 'clients'));
+        $branches = Branches::get(); // or your query to get branches
+        $clients = Client::get(); // or your query to get clients
+        $users = User::where('role', 'user')->get();
+        return view('superadmin.applocatorbranch', compact('branches', 'clients', 'users'));
     }
     public function applocatoremployee()
     {
