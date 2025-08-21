@@ -41,10 +41,13 @@
                                         @endif
                                         <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
                                             <!-- Button trigger modal -->
-                                            <div class="btn-group btn-sm">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+                                            <div class="btn-group justify-content-between w-100 px-1">
+                                                <button type="button" class="btn bg-light text-primary me-2" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
                                                     <i data-feather="refresh-cw" class="me-2"></i> Reset password
                                                 </button>
+                                                <a type="button" class="btn bg-light text-primary" href="{{ route('superadmin_index') }}">
+                                                    <i data-feather="log-in" class="me-2"></i> Return to Login
+                                                </a>
                                             </div>
 
                                             <!-- Modal -->
@@ -58,12 +61,11 @@
                                                         <div class="modal-body">
                                                             Are you sure you want to reset your password? A link will be sent to your email address.
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                                                        <div class="modal-footer justify-content-center">
+                                                                <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
                                                                     <i data-feather="x" class="me-1"></i> Cancel
                                                                 </button>
-                                                                <button type="submit" class="btn btn-primary btn-sm" id="confirmResetBtn">
+                                                                <button type="submit" class="btn bg-light text-primary" id="confirmResetBtn">
                                                                     <span id="confirmResetBtnText">
                                                                         <i data-feather="check" class="me-1" id="confirmResetBtnIcon"></i>
                                                                         <span id="confirmResetBtnLabel">Confirm</span>
@@ -110,16 +112,10 @@
                                                                         }
                                                                     });
                                                                 </script>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small d-inline-flex align-items-center" href="{{ route('superadmin.index') }}">
-                                                <i data-feather="arrow-left" class="me-1"></i> Return to login
-                                            </a>
                                         </div>
                                     </form>
                                 </div>

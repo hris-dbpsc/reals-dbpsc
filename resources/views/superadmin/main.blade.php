@@ -1,12 +1,12 @@
 <main>
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container-xl px-4">
+     <header class="page-header bg-gray-200 pb-10">
+        <div class="container-fluid px-4">
             <div class="page-header-content pt-4">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto mt-4">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="user"></i></div>
-                            Hello, {{ Auth::guard('superadmin')->user()->firstname }} {{ Auth::guard('superadmin')->user()->lastname }}
+                            {{ Auth::guard('superadmin')->user()->firstname }} {{ Auth::guard('superadmin')->user()->lastname }}
                         </h1>
                         <div class="page-header-subtitle">Welcome to your Dashboard</div>
 
@@ -22,7 +22,7 @@
         </div>
     </header>
     <!-- Main page content-->
-    <div class="container-xl px-4 mt-n10">
+    <div class="container-fluid px-4 mt-n10">
         <div class="row">
             <div class="col-xxl-4 col-xl-12 mb-4">
                 <div class="card h-100">

@@ -30,7 +30,7 @@
                                 <div class="card-body p-4">
                                     <!-- Login form-->
                                     <!-- Add animation classes to the form container -->
-                                    <div id="loginFormWrapper" class="animate__animated animate__fadeIn">
+                                    <div id="loginFormWrapper">
                                         <form>
                                             <!-- Form Group (email address)-->
                                             <div class="form-floating mb-2 position-relative">
@@ -80,8 +80,6 @@
             @include('home.footer')
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/scripts.js') }}"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@
                                             @enderror
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
-                                            <button id="openConfirmModalBtn" class="btn btn-primary btn-sm d-flex align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
+                                            <button id="openConfirmModalBtn" class="btn bg-light text-primary d-flex align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#confirmResetModal">
                                                 <i data-feather="refresh-cw" class="me-2"></i> Reset password
                                             </button>
 
@@ -61,10 +61,10 @@
                                                             Are you sure you want to reset your password?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <div class="btn-group" role="group" aria-label="Reset Confirmation">
-                                                                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
-                                                                <button type="button" class="btn btn-primary btn-sm" id="confirmResetBtn">Reset</button>
-                                                            </div>
+                                                                <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                                <i data-feather="x" class="me-2"></i> Cancel</button>
+                                                                <button type="button" class="btn bg-light text-primary" id="confirmResetBtn">
+                                                                <i data-feather="check" class="me-2"></i> Reset</button>
                                                         </div>
                                                     </div>
                                                 </div>

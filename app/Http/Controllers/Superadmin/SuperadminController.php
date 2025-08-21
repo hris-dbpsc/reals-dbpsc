@@ -81,7 +81,7 @@ class SuperadminController extends Controller
     // App Route End
 
 
-    // User Management Routes Start
+    // User Management Routes Start`
     public function usermanagement()
     {
         return view('superadmin.usermanagement');
