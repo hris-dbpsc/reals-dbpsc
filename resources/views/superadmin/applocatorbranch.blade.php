@@ -116,7 +116,7 @@
                 </div>
             </div>
             <!-- Load Google Maps API once only -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOeXSCBI7MECVo71S4FvRchTP9wE_dnBI&callback=initMap"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=callback=initMap"></script>
 
             <div class="container px-4" id="mapContainer" style="display:none;">
                 <div class="card">

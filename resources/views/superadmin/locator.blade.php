@@ -28,7 +28,7 @@
                 <div class="card mt-n10">
                     <div class="card-header">GIS</div>
                     <div class="card-body">
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp3O0pSkOc_3t150Rpo2L2BewfRR7DBgM&callback=initMap"
+                        <script src="https://maps.googleapis.com/maps/api/js?key=callback=initMap"
                             type="text/javascript"></script>
                         <div id="map" style="width: 100%; height: 650px;"></div>
                         <script type="text/javascript">

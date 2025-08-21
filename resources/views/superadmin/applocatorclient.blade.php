@@ -67,7 +67,7 @@
             </div>
 
             <!-- Load Google Maps API once only -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOeXSCBI7MECVo71S4FvRchTP9wE_dnBI&callback=initMap"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=callback=initMap"></script>
 
             <!-- ALL CLIENTS MAP -->
             <div class="container-fuild px-4" id="mapContainer" style="display:none;">
