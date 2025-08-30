@@ -56,7 +56,7 @@
                                         <!-- Submit button-->
                                         <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
                                             <!-- Add Client Button triggers modal -->
-                                            <button type="button" class="btn bg-light text-primary" data-bs-toggle="modal" data-bs-target="#confirmAddClientModal">
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#confirmAddClientModal">
                                                 <i data-feather="plus" class="me-1"></i>
                                                 Add Client
                                             </button>
@@ -73,11 +73,11 @@
                                                             Are you sure you want to add this client?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger d-flex align-items-center" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger d-flex align-items-center" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
-                                                            <button type="submit" class="btn bg-light text-primary d-flex align-items-center">
+                                                            <button type="submit" class="btn btn-outline-primary d-flex align-items-center">
                                                                 <i data-feather="plus" class="me-1"></i>
                                                                 Add Client
                                                             </button>

@@ -13,7 +13,7 @@
                         <div class="page-header-content pt-4">
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-auto mt-2">
-                                    <h2 class="page-header-title  text-body d-flex align-items-center" style="font-size:1.5rem;">
+                                    <h2 class="page-header-title text-body d-flex align-items-center" style="font-size:1.5rem;">
                                         <span class="page-header-icon me-2 text-body d-flex justify-content-center align-items-center" style="width:28px; height:28px;">
                                             <i data-feather="user" style="width:30px; height:30px;"></i>
                                         </span>

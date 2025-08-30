@@ -260,7 +260,7 @@
                                                         'Dinagat Islands': ['San Jose', 'Basilisa', 'Cagdianao', 'Dinagat', 'Libjo', 'Loreto', 'Tubajon'],
                                                         'Surigao del Norte': ['Surigao City', 'Alegria', 'Bacuag', 'Burgos', 'Claver', 'Dapa', 'Del Carmen', 'General Luna', 'Gigaquit', 'Mainit', 'Malimono', 'Pilar', 'Placer', 'San Benito', 'San Isidro', 'Santa Monica', 'Sison', 'Socorro', 'Tagana-an', 'Tubod'],
                                                         'Surigao del Sur': ['Bislig City', 'Tandag City', 'Barobo', 'Bayabas', 'Cagwait', 'Cantilan', 'Carmen', 'Carrascal', 'Cortes', 'Hinatuan', 'Lanuza', 'Lianga', 'Lingig', 'Madrid', 'Marihatag', 'San Agustin', 'San Miguel', 'Tagbina', 'Tago'],
-                                                        'Metro Manila': ['Manila', 'Quezon City', 'Makati', 'Pasig', 'Taguig', 'Mandaluyong', 'Parañaque', 'Las Piñas', 'Muntinlupa', 'Caloocan', 'Malabon', 'Navotas', 'Valenzuela', 'Pasay', 'San Juan', 'Marikina', 'Pateros'],
+                                                        'Metro Manila': ['Caloocan', 'Las Piñas', 'Makati', 'Malabon', 'Mandaluyong', 'Manila', 'Marikina', 'Muntinlupa', 'Navotas', 'Parañaque', 'Pasay', 'Pasig', 'Pateros', 'Quezon City', 'San Juan', 'Taguig', 'Valenzuela'],
                                                         'Abra': ['Bangued', 'Boliney', 'Bucay', 'Bucloc', 'Daguioman', 'Danglas', 'Dolores', 'La Paz', 'Lacub', 'Lagangilang', 'Lagayan', 'Langiden', 'Licuan-Baay', 'Luba', 'Malibcong', 'Manabo', 'Peñarrubia', 'Pidigan', 'Pilar', 'Sallapadan', 'San Isidro', 'San Juan', 'San Quintin', 'Tayum', 'Tineg', 'Tubo', 'Villaviciosa'],
                                                         'Apayao': ['Conner', 'Calanasan', 'Flora', 'Kabugao', 'Luna', 'Pudtol', 'Santa Marcela'],
                                                         'Benguet': ['La Trinidad', 'Baguio City', 'Atok', 'Bakun', 'Bokod', 'Buguias', 'Itogon', 'Kabayan', 'Kapangan', 'Kibungan', 'Mankayan', 'Sablan', 'Tuba', 'Tublay'],
@@ -332,8 +332,8 @@
                                         </div>
                                         <!-- Submit button-->
                                         <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
-                                            <button class="btn bg-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmSaveModal">
-                                                <i data-feather="save" class="me-1"></i>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmSaveModal">
+                                                <i data-feather="bookmark" class="me-1"></i>
                                                 Save Changes
                                             </button>
                                             <!-- Confirmation Modal -->
@@ -348,12 +348,12 @@
                                                             Are you sure you want to save these changes?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
-                                                            <button type="button" class="btn bg-light text-primary" id="modalSaveBtn">
-                                                                <i data-feather="save" class="me-1"></i>
+                                                            <button type="button" class="btn btn-outline-primary" id="modalSaveBtn">
+                                                                <i data-feather="bookmark" class="me-1"></i>
                                                                 Save
                                                             </button>
                                                         </div>

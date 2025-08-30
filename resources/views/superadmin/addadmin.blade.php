@@ -67,7 +67,7 @@
 
                                         <!-- Submit button-->
                                         <!-- Add Admin Button triggers modal -->
-                                        <button class="btn bg-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmAddAdminModal">
+                                        <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmAddAdminModal">
                                             <i class="me-1" data-feather="plus"></i>
                                             Add Admin
                                         </button>
@@ -84,11 +84,11 @@
                                                         Are you sure you want to add this Admin?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                             <i class="me-1" data-feather="x"></i>
                                                             Cancel
                                                         </button>
-                                                        <button type="submit" class="btn bg-light text-primary">
+                                                        <button type="submit" class="btn btn-outline-primary">
                                                             <i class="me-1" data-feather="plus"></i>
                                                             Add Admin
                                                         </button>

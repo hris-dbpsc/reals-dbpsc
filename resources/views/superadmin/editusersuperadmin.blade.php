@@ -113,8 +113,8 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button class="btn btn-light text-primary d-flex align-items-center" type="button" id="confirmSaveBtn">
-                                                <i data-feather="save" class="me-2"></i>
+                                            <button class="btn btn-outline-primary d-flex align-items-center" type="button" id="confirmSaveBtn">
+                                                <i data-feather="bookmark" class="me-2"></i>
                                                 Save Changes
                                             </button>
                                         </div>
@@ -131,11 +131,11 @@
                                                         Are you sure you want to save these changes?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                             <i data-feather="x" class="me-1"></i>
                                                             Cancel</button>
-                                                        <button type="button" class="btn btn-light text-primary" id="modalSaveBtn">
-                                                            <i data-feather="save" class="me-1"></i>
+                                                        <button type="button" class="btn btn-outline-primary" id="modalSaveBtn">
+                                                            <i data-feather="bookmark" class="me-1"></i>
                                                             Save</button>
                                                     </div>
                                                 </div>

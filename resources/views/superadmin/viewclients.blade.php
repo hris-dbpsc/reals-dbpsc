@@ -93,7 +93,7 @@
                                         
                                         <div class="d-flex flex-column flex-xl-row align-items-stretch justify-content-center text-center gap-2">
                                             @if(!empty($client->clientgeolocation))
-                                            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($client->clientgeolocation) }}" target="_blank" class="btn bg-light text-body">
+                                            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($client->clientgeolocation) }}" target="_blank" class="btn btn-outline-primary">
                                                 <i data-feather="map-pin" class="me-1"></i>
                                                 view in map
                                             </a>
@@ -102,7 +102,7 @@
                                             @endif
 
                                             @if(!empty($client->clientstreetview))
-                                            <a href="{{ $client->clientstreetview }}" target="_blank" class="btn bg-light text-body">
+                                            <a href="{{ $client->clientstreetview }}" target="_blank" class="btn btn-outline-primary">
                                                 <i data-feather="map-pin" class="me-1"></i>
                                                 view in streetview
                                             </a>

@@ -23,11 +23,11 @@
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
                                         <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-xl-end text-center text-xl-start">
-                                            <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addclientadmin') }}">
+                                            <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addclientadmin') }}">
                                                 <i class="me-1" data-feather="plus"></i>
                                                 Add Client Admin
                                             </a>
-                                            <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
+                                            <a class="btn btn-outline-primary  mb-2 mb-xl-0 me-0 me-xl-2" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
                                                 <i class="me-1" data-feather="download"></i>Export Client Admins
                                             </a>
                                             <!-- Export CSV Confirmation Modal -->
@@ -42,11 +42,11 @@
                                                             Are you sure you want to export the Client Admin list?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                                <button type="button" class="btn bg-light text-danger d-inline-flex align-items-center" data-bs-dismiss="modal">
+                                                                <button type="button" class="btn btn-outline-danger d-inline-flex align-items-center" data-bs-dismiss="modal">
                                                                     <i data-feather="x" class="me-1"></i>
                                                                     Cancel
                                                                 </button>
-                                                                <a href="{{ route('superadmin_export_userclientadmin') }}" class="btn bg-light text-primary d-inline-flex align-items-center" id="exportCsvBtn">
+                                                                <a href="{{ route('superadmin_export_userclientadmin') }}" class="btn btn-outline-primary d-inline-flex align-items-center" id="exportCsvBtn">
                                                                     <i data-feather="download" class="me-1"></i>
                                                                     Export
                                                                 </a>
@@ -169,7 +169,7 @@
                                                         <i data-feather="alert-triangle" style="width: 2em; height: 2em;"></i>
                                                     </button>
                                                     <!-- Suspend Modal -->
-                                                    <div class="modal fade" id="suspendModal{{ $clientadmin->id }}" tabindex="-1" aria-labelledby="suspendModalLabel{{ $clientadmin->id }}" aria-hidden="true">
+                                                    <div class="modal fade" id="suspendModal{{ $clientadmin->id }}" tabindex="-1" aria-labelledby="suspendModalLabel{{ $clientadmin->id }}" aria-hidden="true" style="z-index: 1080;">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -180,14 +180,14 @@
                                                                     Are you sure you want to suspend this clientadmin?
                                                                 </div>
                                                                 <div class="modal-footer justify-content-center">
-                                                                    <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                         <i data-feather="x" class="me-1"></i>
                                                                         Cancel
                                                                     </button>
                                                                     <form action="{{ route('superadmin_clientadminsuspend', $clientadmin->id) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PATCH')
-                                                                        <button type="submit" class="btn btn-light text-primary">
+                                                                        <button type="submit" class="btn btn-outline-primary">
                                                                             <i data-feather="alert-triangle" class="me-1"></i>
                                                                             Suspend
                                                                         </button>
@@ -201,7 +201,7 @@
                                                         <i data-feather="trash-2" style="width: 2em; height: 2em;"></i>
                                                     </button>
                                                     <!-- Delete Modal -->
-                                                    <div class="modal fade" id="deleteModal{{ $clientadmin->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $clientadmin->id }}" aria-hidden="true">
+                                                    <div class="modal fade" id="deleteModal{{ $clientadmin->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $clientadmin->id }}" aria-hidden="true" style="z-index: 1080;">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -212,14 +212,14 @@
                                                                     Are you sure you want to deactivate this clientadmin?
                                                                 </div>
                                                                 <div class="modal-footer justify-content-center">
-                                                                    <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                         <i data-feather="x" class="me-1"></i>
                                                                         Cancel
                                                                     </button>
                                                                     <form action="{{ route('superadmin_clientadminsoftdelete', $clientadmin->id) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PATCH')
-                                                                        <button type="submit" class="btn btn-light text-primary">
+                                                                        <button type="submit" class="btn btn-outline-primary">
                                                                             <i data-feather="trash-2" class="me-1"></i>
                                                                             Deactivate
                                                                         </button>

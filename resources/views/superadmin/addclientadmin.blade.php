@@ -80,7 +80,7 @@
 
                                         <!-- Submit button-->
                                         <!-- Add Client Admin Button triggers modal -->
-                                        <button type="button" class="btn bg-light text-primary" data-bs-toggle="modal" data-bs-target="#confirmAddClientAdminModal">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#confirmAddClientAdminModal">
                                             <i class="me-1" data-feather="plus"></i> 
                                             Add Client Admin
                                         </button>
@@ -97,11 +97,11 @@
                                                         Are you sure you want to add this Client Admin?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                 <i class="me-1" data-feather="x"></i>
                                                                 Cancel
                                                             </button>
-                                                            <button type="submit" class="btn bg-light text-primary">
+                                                            <button type="submit" class="btn btn-outline-primary">
                                                                 <i class="me-1" data-feather="plus"></i>
                                                                 Add Client Admin
                                                             </button>

@@ -78,6 +78,30 @@
                                                 </div>
 
                                                 <div class="form-floating mb-2">
+                                                    <select class="form-select" id="region" name="region" aria-label="Select Region">
+                                                        <option value="" disabled {{ !$admin->region ? 'selected' : '' }}>Select Region</option>
+                                                        <option value="I" {{ $admin->region == 'I' ? 'selected' : '' }}>I</option>
+                                                        <option value="II" {{ $admin->region == 'II' ? 'selected' : '' }}>II</option>
+                                                        <option value="III" {{ $admin->region == 'III' ? 'selected' : '' }}>III</option>
+                                                        <option value="IV-A" {{ $admin->region == 'IV-A' ? 'selected' : '' }}>IV-A</option>
+                                                        <option value="MIMAROPA" {{ $admin->region == 'MIMAROPA' ? 'selected' : '' }}>MIMAROPA</option>
+                                                        <option value="V" {{ $admin->region == 'V' ? 'selected' : '' }}>V</option>
+                                                        <option value="VI" {{ $admin->region == 'VI' ? 'selected' : '' }}>VI</option>
+                                                        <option value="VII" {{ $admin->region == 'VII' ? 'selected' : '' }}>VII</option>
+                                                        <option value="VIII" {{ $admin->region == 'VIII' ? 'selected' : '' }}>VIII</option>
+                                                        <option value="IX" {{ $admin->region == 'IX' ? 'selected' : '' }}>IX</option>
+                                                        <option value="X" {{ $admin->region == 'X' ? 'selected' : '' }}>X</option>
+                                                        <option value="XI" {{ $admin->region == 'XI' ? 'selected' : '' }}>XI</option>
+                                                        <option value="XII" {{ $admin->region == 'XII' ? 'selected' : '' }}>XII</option>
+                                                        <option value="XIII" {{ $admin->region == 'XIII' ? 'selected' : '' }}>XIII</option>
+                                                        <option value="BARMM" {{ $admin->region == 'BARMM' ? 'selected' : '' }}>BARMM</option>
+                                                        <option value="NCR" {{ $admin->region == 'NCR' ? 'selected' : '' }}>NCR</option>
+                                                        <option value="CAR" {{ $admin->region == 'CAR' ? 'selected' : '' }}>CAR</option>
+                                                    </select>
+                                                    <label for="region">Region</label>
+                                                </div>
+
+                                                <div class="form-floating mb-2">
                                                     <input class="form-control" id="email" name="email" type="text" value="{{ $admin->email }}" placeholder="Email" />
                                                     <label for="email">Email</label>
                                                 </div>
@@ -119,8 +143,8 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button class="btn btn-light text-primary" type="button" id="confirmSaveBtn">
-                                                <i data-feather="download" class="me-1"></i>
+                                            <button class="btn btn-outline-primary" type="button" id="confirmSaveBtn">
+                                                <i data-feather="bookmark" class="me-1"></i>
                                                 Save Changes
                                             </button>
                                         </div>
@@ -137,12 +161,12 @@
                                                         Are you sure you want to save these changes?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                             <i data-feather="x" class="me-1"></i>
                                                             Cancel
                                                         </button>
-                                                        <button type="button" class="btn btn-light text-primary" id="modalSaveBtn">
-                                                            <i data-feather="save" class="me-1"></i>
+                                                        <button type="button" class="btn btn-outline-primary" id="modalSaveBtn">
+                                                            <i data-feather="bookmark" class="me-1"></i>
                                                             Save
                                                         </button>
                                                     </div>

@@ -23,10 +23,10 @@
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
                                         <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-xl-end text-center text-xl-start">
-                                            <a class="btn btn-light text-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
+                                            <a class="btn btn-outline-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
                                                 <i class="me-1" data-feather="upload"></i>Import
                                             </a>
-                                            <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
+                                            <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
                                                 <i class="me-1" data-feather="download"></i>Export
                                             </a>
                                             <!-- Export CSV Modal -->
@@ -38,6 +38,7 @@
                                                                 <h5 class="modal-title" id="exportCsvModalLabel">Export Employees</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
+
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
                                                                     <div class="form-floating">
@@ -52,11 +53,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer justify-content-center">
-                                                                <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                     <i data-feather="x" class="me-1"></i>
                                                                     Cancel
                                                                 </button>
-                                                                <button type="submit" class="btn btn-light text-primary" id="exportCsvBtn">
+                                                                <button type="submit" class="btn btn-outline-primary" id="exportCsvBtn">
                                                                     <i data-feather="download" class="me-1"></i>
                                                                     Export
                                                                 </button>
@@ -105,11 +106,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
-                                                            <button type="submit" class="btn btn-light text-primary">
+                                                            <button type="submit" class="btn btn-outline-success">
                                                                 <i data-feather="upload" class="me-1"></i>
                                                                 Upload
                                                             </button>
@@ -124,13 +125,20 @@
                     </header>
                     <!-- Main page content-->
                     <div class="container-fluid px-4">
-                        @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success')}}
-                        </div>
-                        @endif
-                        <div class="card">
-                            <div class="card-body">
+                        @switch(true)
+                            @case(session('success'))
+                                <div class="alert alert-success alert-sm py-1 px-2">
+                                    {{ session('success') }}
+                                </div>
+                                @break
+
+                            @case(session('import_error'))
+                                <div class="alert alert-danger alert-sm py-1 px-2">
+                                    {{ session('import_error') }}
+                                </div>
+                                @break
+                        @endswitch
+                        <div class="card">    <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>

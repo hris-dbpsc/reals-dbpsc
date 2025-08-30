@@ -23,15 +23,15 @@
                                 </div>
                                 <div class="col-12 col-xl-auto mb-2">
                                     <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-xl-end text-center text-xl-start">
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addclient') }}">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addclient') }}">
                                             <i class="me-1" data-feather="plus"></i>
                                             Add Client
                                         </a>
-                                        <a class="btn btn-light text-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
+                                        <a class="btn btn-outline-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
                                             <i class="me-1" data-feather="upload"></i>
                                             Import
                                         </a>
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
                                             <i class="me-1" data-feather="download"></i>
                                             Export
                                         </a>
@@ -47,11 +47,11 @@
                                                         Are you sure you want to export the Client list?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn bg-light text-danger d-inline-flex align-items-center" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger d-inline-flex align-items-center" data-bs-dismiss="modal">
                                                             <i data-feather="x" class="me-1"></i>
                                                             Cancel
                                                         </button>
-                                                        <a href="{{ route('superadmin_clients_export') }}" class="btn bg-light text-primary d-inline-flex align-items-center" id="exportCsvBtn">
+                                                        <a href="{{ route('superadmin_clients_export') }}" class="btn btn-outline-primary d-inline-flex align-items-center" id="exportCsvBtn">
                                                             <i data-feather="download" class="me-1"></i>
                                                             Export
                                                         </a>
@@ -98,11 +98,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger d-flex align-items-center" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger d-flex align-items-center" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
-                                                            <button type="submit" class="btn bg-light text-success d-flex align-items-center">
+                                                            <button type="submit" class="btn btn-outline-success d-flex align-items-center">
                                                                 <i data-feather="upload" class="me-1"></i>
                                                                 Upload
                                                             </button>
@@ -170,7 +170,7 @@
                                                 <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_viewclients', $client->id) }}">
                                                     <i data-feather="eye" class="me-1" style="width: 2em; height: 2em;"></i>
                                                 </a>
-                                                <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_editclients', $client->id) }}">
+                                                <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_editclient', $client->id) }}">
                                                     <i data-feather="edit" class="me-1" style="width: 2em; height: 2em;"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-xs d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $client->id }}">
@@ -179,7 +179,7 @@
                                             </div>
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="deleteModal{{ $client->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $client->id }}" aria-hidden="true">
+                                            <div class="modal fade" id="deleteModal{{ $client->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $client->id }}" aria-hidden="true" style="z-index: 1080;">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -190,14 +190,14 @@
                                                             Are you sure you want to delete this client?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
                                                             <form action="{{ route('superadmin_softdeleteclient', $client->id) }}" method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('PATCH')
-                                                                <button type="submit" class="btn bg-light text-primary">
+                                                                <button type="submit" class="btn btn-outline-primary">
                                                                     <i data-feather="trash-2" class="me-1"></i>
                                                                     Delete
                                                                 </button>
@@ -269,7 +269,7 @@
                                                     <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_viewclients', $client->id) }}">
                                                         <i data-feather="eye" class="me-1" style="width: 2em; height: 2em;"></i>
                                                     </a>
-                                                    <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_editclients', $client->id) }}">
+                                                    <a class="btn btn-xs d-inline-flex align-items-center" href="{{ route('superadmin_editclient', $client->id) }}">
                                                         <i data-feather="edit" class="me-1" style="width: 2em; height: 2em;"></i>
                                                     </a>
                                                 </div>

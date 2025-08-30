@@ -15,6 +15,33 @@ class UsersImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        // Get the row number from the heading row (if available)
+        $rowNumber = $row['row_number'] ?? null;
+
+        $errors = [];
+
+        // Check for duplicate employee number
+        $duplicateEmployee = User::where('employeenumber', $row['employeeid'])->first();
+        if ($duplicateEmployee) {
+            $errors[] = "Duplicate employee number '{$row['employeeid']}' found at row " . ($rowNumber ?? '[unknown]');
+        }
+
+        // Check for duplicate email
+        if (!empty($row['email'])) {
+            $duplicateEmail = User::where('email', $row['email'])->first();
+            if ($duplicateEmail) {
+            $errors[] = "Duplicate email '{$row['email']}' found at row " . ($rowNumber ?? '[unknown]');
+            }
+        }
+
+        // If there are errors, display all errors and the full row data
+        if (!empty($errors)) {
+            $rowDetails = print_r($row, true);
+            $errorMessage = "Import errors at row " . ($rowNumber ?? '[unknown]') . ":\n" .
+            implode("\n", $errors) . "\nRow data:\n" . $rowDetails;
+            throw new \Exception($errorMessage);
+        }
+
         return new User([
             'employeenumber' => $row['employeeid'],
             'clientname' => $row['client'],
@@ -46,6 +73,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'hdmfnumber' => $row['hdmf_number'],
             'lastpaydate' => $row['last_paydate'],
             'region' => $row['region'],
-        ]); 
+            'email' => $row['email'] ?? null,
+        ]);
     }
 }

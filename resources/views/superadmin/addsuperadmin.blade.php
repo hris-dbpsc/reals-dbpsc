@@ -68,7 +68,7 @@
                                         <!-- Submit button-->
                                         <!-- Add Superadmin Button triggers modal -->
                                         <div class="d-grid d-md-block">
-                                            <button class="btn btn-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmAddSuperadminModal">
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#confirmAddSuperadminModal">
                                                 <i class="me-1" data-feather="plus"></i>
                                                 Add Superadmin
                                             </button>
@@ -85,8 +85,8 @@
                                                             Are you sure you want to add this Superadmin?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal"><i class="me-1" data-feather="x"></i>Cancel</button>
-                                                            <button type="submit" class="btn bg-light text-primary"><i class="me-1" data-feather="plus"></i>Add Superadmin</button>
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="me-1" data-feather="x"></i>Cancel</button>
+                                                            <button type="submit" class="btn btn-outline-primary"><i class="me-1" data-feather="plus"></i>Add Superadmin</button>
                                                         </div>
                                                     </div>
                                                 </div>

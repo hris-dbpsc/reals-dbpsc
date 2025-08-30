@@ -22,11 +22,11 @@
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addadmin') }}">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addadmin') }}">
                                             <i class="me-1" data-feather="plus"></i>
                                             Add Admin
                                         </a>
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
                                             <i class="me-1" data-feather="download"></i>Export Admins
                                         </a>
 
@@ -42,11 +42,11 @@
                                                         Are you sure you want to export the Admin list?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                             <i data-feather="x" class="me-1"></i>
                                                             Cancel
                                                         </button>
-                                                        <a href="{{ route('superadmin_export_useradmin') }}" class="btn btn-light text-primary" id="exportCsvBtn">
+                                                        <a href="{{ route('superadmin_export_useradmin') }}" class="btn btn-outline-primary" id="exportCsvBtn">
                                                             <i data-feather="download" class="me-1"></i>
                                                             Export
                                                         </a>
@@ -91,7 +91,7 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" style="position: static !important;">
                                     <thead>
                                         <tr>
                                             <th>PHOTO</th>
@@ -101,6 +101,7 @@
                                             <th>MIDDLE NAME</th>
                                             <th>EMAIL</th>
                                             <th>CONTACT</th>
+                                            <th>REGION</th>
                                             <th>STATUS</th>
                                             <th>ACTION</th>
                                         </tr>
@@ -114,6 +115,7 @@
                                             <th>MIDDLE NAME</th>
                                             <th>EMAIL</th>
                                             <th>CONTACT</th>
+                                            <th>REGION</th>
                                             <th>STATUS</th>
                                             <th>ACTION</th>
                                         </tr>
@@ -142,6 +144,7 @@
                                                 <td>{{ $admin->middlename }}</td>
                                                 <td>{{ $admin->email }}</td>
                                                 <td>{{ $admin->contact }}</td>
+                                                <td>{{ $admin->region }}</td>
                                                 <td>
                                                     @if($admin->isactive == 1)
                                                     <span class="badge bg-light text-dark d-inline-flex align-items-center">
@@ -167,7 +170,7 @@
                                                     <button type="button" class="btn btn-xs d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#suspendModal{{ $admin->id }}">
                                                         <i data-feather="alert-triangle" style="width: 2em; height: 2em;"></i>
                                                     </button>
-                                                    <div class="modal fade" id="suspendModal{{ $admin->id }}" tabindex="-1" aria-labelledby="suspendModalLabel{{ $admin->id }}" aria-hidden="true">
+                                                    <div class="modal fade" id="suspendModal{{ $admin->id }}" tabindex="-1" aria-labelledby="suspendModalLabel{{ $admin->id }}" aria-hidden="true" style="z-index: 1080;">
                                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -178,14 +181,14 @@
                                                                     Are you sure you want to suspend this admin?
                                                                 </div>
                                                                 <div class="modal-footer justify-content-center">
-                                                                    <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                         <i data-feather="x" class="me-1"></i>
                                                                         Cancel
                                                                         <i data-feather="x" class="me-1"></i></button>
                                                                     <form action="{{ route('superadmin_adminsuspend', $admin->id) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PATCH')
-                                                                        <button type="submit" class="btn btn-light text-primary">
+                                                                        <button type="submit" class="btn btn-outline-primary">
                                                                             <i data-feather="alert-triangle" class="me-1"></i>
                                                                             Suspend
                                                                         </button>
@@ -197,7 +200,7 @@
                                                     <button type="button" class="btn btn-xs d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $admin->id }}">
                                                         <i data-feather="trash-2" style="width: 2em; height: 2em;"></i>
                                                     </button>
-                                                    <div class="modal fade" id="deleteModal{{ $admin->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $admin->id }}" aria-hidden="true">
+                                                    <div class="modal fade" id="deleteModal{{ $admin->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $admin->id }}" aria-hidden="true" style="z-index: 1080;">
                                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -207,15 +210,15 @@
                                                                 <div class="modal-body text-center">
                                                                     Are you sure you want to deactivate this admin?
                                                                 </div>
-                                                                <div class="modal-footer content-center">
-                                                                    <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                                                                <div class="modal-footer justify-content-center">
+                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                         <i data-feather="x" class="me-1"></i>
                                                                         Cancel
                                                                     </button>
                                                                     <form action="{{ route('superadmin_adminsoftdelete', $admin->id) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PATCH')
-                                                                        <button type="submit" class="btn btn-light text-primary">
+                                                                        <button type="submit" class="btn btn-outline-primary">
                                                                             <i data-feather="trash-2" class="me-1"></i>
                                                                             Deactivate
                                                                         </button>

@@ -73,7 +73,7 @@
                                         <!-- Submit button-->
                                         <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
                                             <!-- Add Branch Button triggers modal -->
-                                            <button type="button" class="btn bg-light text-primary" data-bs-toggle="modal" data-bs-target="#confirmAddBranchModal">
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#confirmAddBranchModal">
                                                 <i data-feather="plus" class="me-1"></i>
                                                 Add Branch
                                             </button>
@@ -91,11 +91,11 @@
                                                         Are you sure you want to add this branch?
                                                     </div>
                                                     <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                             <i data-feather="x" class="me-1"></i>
                                                             Cancel
                                                         </button>
-                                                        <button type="submit" class="btn bg-light text-primary">
+                                                        <button type="submit" class="btn btn-outline-primary">
                                                             <i data-feather="plus" class="me-1"></i>
                                                             Add Branch
                                                         </button>

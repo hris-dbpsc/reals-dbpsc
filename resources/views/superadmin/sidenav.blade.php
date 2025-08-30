@@ -4,7 +4,6 @@
             <div class="nav accordion" id="accordionSidenav">
                 <!-- Sidenav Menu Heading (Core)-->
                 <a class="nav-link" href="{{ route('superadmin_dashboard') }}">
-                    <div class="sidenav-menu-heading">Core</div>
                 </a>
                 <!-- Sidenav Accordion (Dashboard)-->
                 <a class="nav-link" href="{{ route('superadmin_dashboard') }}">
@@ -64,43 +63,52 @@
                         </a>
                     </nav>
                 </div>
-
-                <!-- Sidenav Applications-->
-                <a class=" nav-link" href="{{ route('superadmin_apps') }}">
+                <!-- Applications-->
+                <a class="nav-link" href="{{ route('superadmin_apps') }}">
                     <div class="sidenav-menu-heading">Applications</div>
                 </a>
-                <!-- Sidenav Link (Charts)-->
-                <a class="nav-link" href="">
-                    <div class="nav-link-icon"><i data-feather="user"></i></div>
-                    People
+                <!-- Sidenav Accordion (Layout)-->
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#viewapps" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                    View Apps
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <!-- Sidenav Link (Tables)-->
-                <a class="nav-link" href="#!">
-                    <div class="nav-link-icon"><i data-feather="users"></i></div>
-                    WorkForce
-                </a>
-                </a>
-                <!-- Sidenav Link (Tables)-->
-                <a class="nav-link" href="#!">
-                    <div class="nav-link-icon"><i data-feather="calendar"></i></div>
-                    TimeOff
-                </a>
-                </a>
-                <!-- Sidenav Link (Tables)-->
-                <a class="nav-link" href="{{ route('superadmin_applocator') }}">
-                    <div class="nav-link-icon"><i data-feather="map-pin"></i></div>
-                    Locator
-                </a>
-                <!-- Sidenav Link (Tables)-->
-                <a class="nav-link" href="#!">
-                    <div class="nav-link-icon"><i data-feather="message-square"></i></div>
-                    WorkChat
-                </a>
-                <!-- Sidenav Link (Tables)-->
-                <a class="nav-link" href="#!">
-                    <div class="nav-link-icon"><i data-feather="clock"></i></div>
-                    TimeLog
-                </a>
+                <div class="collapse" id="viewapps" data-bs-parent="#accordionSidenavPagesMenu">
+                    <nav class="sidenav-menu-nested nav">
+                        <!-- Sidenav Link (Charts)-->
+                        <a class="nav-link" href="{{ route('superadmin_apppeople') }}">
+                            <div class="nav-link-icon"><i data-feather="user"></i></div>
+                            People
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="{{ route('superadmin_appworkforce') }}">
+                            <div class="nav-link-icon"><i data-feather="users"></i></div>
+                            WorkForce
+                        </a>
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="calendar"></i></div>
+                            TimeOff
+                        </a>
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="{{ route('superadmin_applocator') }}">
+                            <div class="nav-link-icon"><i data-feather="map-pin"></i></div>
+                            Locator
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="message-square"></i></div>
+                            WorkChat
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" href="#!">
+                            <div class="nav-link-icon"><i data-feather="clock"></i></div>
+                            TimeLog
+                        </a>
+                    </nav>
+                </div>
             </div>
         </div>
         <!-- Sidenav Footer-->

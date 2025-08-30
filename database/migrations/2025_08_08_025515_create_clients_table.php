@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('clientshortname');
             $table->string('clienttype')->nullable();
             $table->string('clientphoto')->nullable();
+            $table->string('clientcontact')->nullable();
+            $table->string('clientcontactperson')->nullable();
+            $table->string('clientemail')->nullable();
+            $table->string('clientaddress')->nullable();
+            $table->string('clientcity')->nullable();
+            $table->string('clientprovince')->nullable();
+            $table->string('clientregion')->nullable();
+            $table->string('clientcontractstart')->nullable();
+            $table->string('clientcontractend')->nullable();
             $table->string('clientgeolocation')->nullable();
             $table->string('clientstreetview')->nullable();
             $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended

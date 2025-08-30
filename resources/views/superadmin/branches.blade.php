@@ -23,15 +23,15 @@
                                 </div>
                                 <div class="col-12 col-xl-auto mb-2">
                                     <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center justify-content-xl-end text-center text-xl-start">
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addbranch') }}">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="{{ route('superadmin_addbranch') }}">
                                             <i class="me-1" data-feather="plus"></i>
                                             Add Branch
                                         </a>
-                                        <a class="btn btn-light text-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
+                                        <a class="btn btn-outline-success mb-2 mb-xl-0 me-0 me-xl-2" href="#" data-bs-toggle="modal" data-bs-target="#importCsvModal">
                                             <i class="me-1" data-feather="upload"></i>
                                             Import</span>
                                         </a>
-                                        <a class="btn btn-light text-primary mb-2 mb-xl-0 me-0 me-xl-2" href="" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
+                                        <a class="btn btn-outline-primary mb-2 mb-xl-0 me-0 me-xl-2" href="" data-bs-toggle="modal" data-bs-target="#exportCsvModal">
                                             <i class="me-1" data-feather="download"></i>
                                             Export</span>
                                         </a>
@@ -56,14 +56,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                                <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
-                                                                    <i data-feather="x" class="me-1"></i>
-                                                                    Cancel
-                                                                </button>
-                                                                <button type="submit" class="btn bg-light text-primary" id="exportCsvBtn">
-                                                                    <i data-feather="download" class="me-1"></i>
-                                                                    Export
-                                                                </button>
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                                                <i data-feather="x" class="me-1"></i>
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit" class="btn btn-outline-primary" id="exportCsvBtn">
+                                                                <i data-feather="download" class="me-1"></i>
+                                                                Export
+                                                            </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -108,14 +108,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                                <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
-                                                                    <i data-feather="x" class="me-1"></i>
-                                                                    Cancel
-                                                                </button>
-                                                                <button type="submit" class="btn bg-light text-success">
-                                                                    <i data-feather="upload" class="me-1"></i>
-                                                                    Upload
-                                                                </button>
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                                                                <i data-feather="x" class="me-1"></i>
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit" class="btn btn-outline-success">
+                                                                <i data-feather="upload" class="me-1"></i>
+                                                                Upload
+                                                            </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -195,7 +195,7 @@
                                             </div>
 
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="deleteModal{{ $branch->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $branch->id }}" aria-hidden="true">
+                                            <div class="modal fade" id="deleteModal{{ $branch->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $branch->id }}" aria-hidden="true" style="z-index: 1080;">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -206,14 +206,14 @@
                                                             Are you sure you want to delete this branch?
                                                         </div>
                                                         <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn bg-light text-danger" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                                                                 <i data-feather="x" class="me-1"></i>
                                                                 Cancel
                                                             </button>
                                                             <form action="{{ route('superadmin_softdeletebranch', $branch->id) }}" method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('PATCH')
-                                                                <button type="submit" class="btn btn bg-light text-primary">
+                                                                <button type="submit" class="btn btn-outline-primary">
                                                                     <i data-feather="trash-2" class="me-1"></i>
                                                                     Delete
                                                                 </button>

@@ -16,8 +16,8 @@ class Clientadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::guard('clientadmin')->check()){
-            return redirect()->route('/index');
+        if (!Auth::guard('clientadmin')->check()) {
+            return redirect()->route('index');
         }
         return $next($request);
     }

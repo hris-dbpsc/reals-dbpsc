@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('password');
             $table->string('role')->default('admin');
+            $table->string('region')->nullable();
             $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended
             $table->string('token')->nullable();
             $table->timestamps();

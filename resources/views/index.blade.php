@@ -1,104 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | REALS - DBPSC</title>
-    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
-    @include('home.header')
-</head>
-<body class="bg-primary">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container-xl px-4">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
-                            <div class="card my-5 shadow">
-                                <div class="card-body p-5 text-center">
-                                    <img src="{{ asset('assets/img/favicon.png') }}" alt="DBPSC Logo" class="mb-3" style="width: 75px;">
-                                    <div class="h1 fw-bolder mb-3">REALS - DBPSC</div>
+@include('home.header')
+
+<body class="bg-primary min-vh-100 d-flex flex-column">
+    <div class="flex-grow-1 d-flex flex-column justify-content-center">
+        <main class="flex-grow-1 d-flex align-items-center justify-content-center w-100">
+            <div class="container-xl px-4 d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="row justify-content-center w-100">
+                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
+                        <div class="card my-5 shadow-lg border-0 mx-auto w-100 position-relative">
+                            <div class="card-body p-4 text-center">
+                                <img src="{{ asset('assets/img/favicon.png') }}" alt="DBPSC Logo" class="mb-2" style="width: 70px; height: 70px; object-fit: cover;">
+                                <div class="h1 fw-bold mb-1 text-primary" style="letter-spacing: 2px;">
+                                    <span>REALS - DBPSC</span>
                                 </div>
-                                <hr class="my-0" />
-                                <div class="card-body p-5">
-                                    <!-- Show validation errors -->
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul class="mb-0">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-
-                                    @if (session('error'))
-                                        <div class="alert alert-danger">
-                                            {{ session('error')}}
-                                        </div>
-                                    @endif
-
-                                    @if (session('success'))
-                                        <div class="alert alert-success">
-                                            {{ session('success')}}
-                                        </div>
-                                    @endif
-
-                                    <form action="{{ route('login_submit')}}" method="post" autocomplete="on" aria-label="Login form">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label class="text-gray-600 small" for="email">Email Address</label>
-                                            <input 
-                                                class="form-control form-control-solid" 
-                                                type="email" 
-                                                name="email" 
-                                                id="email" 
-                                                value="{{ old('email') }}" 
-                                                required 
-                                                autofocus 
-                                                autocomplete="email"
-                                                aria-describedby="emailHelp"
-                                            >
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="text-gray-600 small" for="password">Password</label>
-                                            <input 
-                                                class="form-control form-control-solid" 
-                                                type="password" 
-                                                name="password" 
-                                                id="password" 
-                                                required 
-                                                autocomplete="current-password"
-                                            >
-                                        </div>
-                                        <div class="mb-3 text-end">
-                                            <a class="small" href="{{ route('superadmin_forget_password')}}">Forgot your password?</a>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="form-check">
-                                                <input 
-                                                    class="form-check-input" 
-                                                    id="remember" 
-                                                    type="checkbox" 
-                                                    name="remember" 
-                                                    {{ old('remember') ? 'checked' : '' }}
-                                                />
-                                                <label class="form-check-label" for="remember">Remember me</label>
-                                            </div>
-                                            <button class="btn btn-primary px-4" type="submit" aria-label="Login">Login</button>
-                                        </div>
-                                    </form>
+                                <div class="text-muted" style="font-size: 0.75rem; margin-bottom: 0.5rem;">
+                                    Real-time Employee Assignment and Locator System
                                 </div>
-                                <hr class="my-0" />
+                                <div class="mb-1">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary fw-normal d-inline-flex align-items-center" style="font-size: 0.85rem; padding: 0.3em 0.6em;">
+                                        <i data-feather="shield" style="width: 0.9em; height: 0.9em; margin-right: 0.3em; vertical-align: middle;"></i>
+                                        <span>Secured Access</span>
+                                    </span>
+                                </div>
                             </div>
+                            <hr class="my-0" />
+                            <div class="card-body p-4">
+                                <form action="{{ route('login_multiauth') }}" method="post" id="loginForm">
+                                    @csrf
+                                    <div class="form-floating mb-2 position-relative">
+                                        <input class="form-control form-control-solid pe-5" type="text" name="username" placeholder="Username">
+                                        <label for="username" class="text-gray-600 small">Username</label>
+                                        <span class="position-absolute top-50 end-0 translate-middle-y me-3">
+                                            <i data-feather="user"></i>
+                                        </span>
+                                    </div>
+                                    <div class="form-floating mb-2 position-relative">
+                                        <input class="form-control form-control-solid pe-5" type="password" name="password" id="passwordExample" placeholder="Password" required>
+                                        <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor:pointer;" id="togglePasswordBtn">
+                                            <i id="togglePasswordIcon" data-feather="eye"></i>
+                                        </span>
+                                        <label for="passwordExample" class="text-gray-600 small">Password</label>
+                                    </div>
+                                    @if (session('error'))
+                                    <div class="alert alert-danger py-2">
+                                        {{ session('error')}}
+                                    </div>
+                                    @endif
+                                    @if (session('success'))
+                                    <div class="alert alert-success py-2">
+                                        {{ session('success')}}
+                                    </div>
+                                    @endif
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <button class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center shadow-lg" type="submit" style="font-weight: 600; font-size: 1.1rem;">
+                                            <i data-feather="log-in" class="me-1"></i> Login
+                                        </button>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" id="checkRememberPassword" type="checkbox" name="remember" />
+                                            <label class="form-check-label" for="checkRememberPassword">Remember password</label>
+                                        </div>
+                                        <a class="small ms-2" href="{{ route('forget_password') }}">Forgot your password?</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr class="my-0" />
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
-        <div id="layoutAuthentication_footer">
+            </div>
+        </main>
+        <div id="layoutAuthentication_footer" class="position-fixed bottom-0 start-0 w-100">
             @include('home.footer')
         </div>
     </div>
+    <script>
+        feather.replace();
+        // Password toggle logic
+        document.getElementById('togglePasswordBtn').onclick = function() {
+            const passwordInput = document.getElementById('passwordExample');
+            const icon = document.getElementById('togglePasswordIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.setAttribute('data-feather', 'eye-off');
+            } else {
+                passwordInput.type = 'password';
+                icon.setAttribute('data-feather', 'eye');
+            }
+            feather.replace();
+        };
+    </script>
 </body>
+
 </html>

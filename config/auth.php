@@ -48,7 +48,7 @@ return [
             'driver' => 'session',
             'provider' => 'clientadmins',
         ],
-        'web' => [
+        'user' => [
             'driver' => 'session',
             'provider' => 'users',
         ],

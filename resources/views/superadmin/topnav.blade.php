@@ -11,7 +11,7 @@
         <!-- User Dropdown-->
         <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
             <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-fluid" src="{{ Auth::guard('superadmin')->user()->photo ? asset('assets/users/superadmin/' . Auth::guard('superadmin')->user()->photo) : asset('assets/assets/img/illustrations/profiles/profile-1.png') }}" />
+                <img class="img-fluid" src="{{ Auth::guard('superadmin')->user()->photo ? asset('assets/users/superadmin/' . Auth::guard('superadmin')->user()->photo) : asset('assets/assets/img/demo/user-placeholder.svg') }}" />
             </a>
             <div class="dropdown-menu dropdown-menu-end border-0 shadow dropdown-menu-animation" aria-labelledby="navbarDropdownUserImage">
                 <h6 class="dropdown-header d-flex align-items-center">
@@ -26,10 +26,6 @@
                     <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                     Account
                 </a>
-                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                    <div class="dropdown-item-icon"><i data-feather="lock"></i></div>
-                    Change Password
-                </a>
                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                     Logout
@@ -39,46 +35,6 @@
     </ul>
 </nav>
 
-<!-- Change Password Modal (moved outside nav for proper display) -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="{{ route('superadmin_changepassword', Auth::guard('superadmin')->user()->id) }}" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Old Password" required>
-                        <label for="oldpassword">Old Password</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password" required>
-                        <label for="newpassword">New Password</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
-                        <label for="confirmpassword">Confirm New Password</label>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-end">
-                    <div class="btn-group" role="group" aria-label="Password Actions">
-                        <button type="button" class="btn btn-danger btn-sm d-inline-flex align-items-center" data-bs-dismiss="modal">
-                            <i data-feather="x" class="me-1"></i>
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm d-inline-flex align-items-center">
-                            <i data-feather="key" class="me-1"></i>
-                            Change Password
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Logout Confirmation Modal (move outside nav and dropdown) -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
@@ -92,33 +48,17 @@
                 Are you sure you want to logout?
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-light text-danger" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                     <i data-feather="x" class="me-1"></i>
                     Cancel
                 </button>
-                <a href="{{ route('superadmin_logout') }}" class="btn btn-light text-primary">
-                    <i data-feather="log-out" class="me-1"></i>
-                    Logout
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Logout Confirmation Modal (move outside nav and dropdown) -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to logout?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <a href="{{ route('superadmin_logout') }}" class="btn btn-primary">Logout</a>
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i data-feather="log-out" class="me-1"></i>
+                        Logout
+                    </button>
+                </form>
             </div>
         </div>
     </div>

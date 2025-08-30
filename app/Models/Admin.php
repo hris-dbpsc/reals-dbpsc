@@ -28,6 +28,7 @@ class Admin extends Authenticatable
         'photo',
         'password',
         'role',
+        'region',
         'isactive',
         'token',
     ];

@@ -1,67 +1,107 @@
 <?php
 
+use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Login\ResetPasswordController;
+use App\Http\Controllers\Login\LogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Superadmin\SuperadminController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Clientadmin\ClientadminController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Middleware\Admin;
+use Illuminate\Support\Facades\Auth;
 
-// Login Page Routes Start
-// Main Landing Page Route
+// =========================================
+// Login Page Route
 Route::get('/', function () {
-    return view('users.index');
+    return view('index');
+})->name('index');
+// =========================================
+
+
+// =========================================
+// Login Multi-Authentication Route
+Route::post('/index', [LoginController::class, 'login_multiauth'])->name('login_multiauth');
+// =========================================
+
+
+// =========================================
+// Forget-Password Routes
+Route::get('forget-password', [ResetPasswordController::class, 'forget_password'])->name('forget_password');
+Route::post('forget-password', [ResetPasswordController::class, 'forget_password_submit'])->name('forget_password_submit');
+Route::get('reset-password/{token}/{email}', [ResetPasswordController::class, 'reset_password'])->name('reset_password');
+Route::post('reset-password/{token}/{email}', [ResetPasswordController::class, 'reset_password_submit'])->name('reset_password_submit');
+// =========================================
+
+
+// =========================================
+// Logout Route
+Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
+// =========================================
+
+
+
+// =========================================
+// User Dashboard Page Route
+Route::middleware('user')->prefix('user')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user_dashboard');
 });
-Route::get('/user', function () {
-    return view('users.index');
+// =========================================
+
+
+// =========================================
+// Clientadmin Dashboard Page Route
+Route::middleware('clientadmin')->prefix('clientadmin')->group(function () {
+    Route::get('/dashboard', [ClientadminController::class, 'dashboard'])->name('clientadmin_dashboard');
 });
-
-// Superadmin Login Page Route
-Route::get('/superadmin', function () {
-    return view('superadmin.index');
-})->name('superadmin.index');   
-
-// Admin Login Page Route
-Route::get('/admin', function () {
-    return view('admin.index');
-})->name('admin.index');    
-
-// Client Admin Login Page Route
-Route::get('/client', function () {
-    return view('clientadmin.index');
-})->name('clientadmin.index');
+// =========================================
 
 
 
+// =========================================
 // Superadmin Routes
+//
 // Authenticated Superadmin Routes
-Route::middleware('superadmin')->prefix('superadmin')->group(function(){
+Route::middleware('superadmin')->prefix('superadmin')->group(function () {
+
+    // =========================================
+    // Superadmin Dashboard Page Route
     Route::get('/dashboard', [SuperadminController::class, 'dashboard'])->name('superadmin_dashboard');
-
+    // TEST APP
     Route::get('/qrcode', [SuperadminController::class, 'qrcode'])->name('superadmin_qrcode');
+    // =========================================
 
-    // User Management Routes Start
+    // =========================================
+    // Superadmin Profile Routes
+    Route::get('/editsuperadmin/{id}', [SuperadminController::class, 'editsuperadmin'])->name('superadmin_editsuperadmin');
+    Route::put('/editsuperadmin/{id}', [SuperadminController::class, 'editsuperadmin_submit'])->name('superadmin_editsuperadmin_submit');
+    Route::put('/editsuperadmin_uploadprofilepicture/{id}', [SuperadminController::class, 'editsuperadmin_uploadprofilepicture'])->name('superadmin_editsuperadmin_uploadprofilepicture');
+    Route::post('/changepassword/{id}', [SuperadminController::class, 'changepassword'])->name('superadmin_changepassword');
+    // =========================================
+
+    // =========================================
+    // User Management Routes
     Route::get('/usermanagement', [SuperadminController::class, 'usermanagement'])->name('superadmin_usermanagement');
-    // Superadmin Management Routes
+
+    // Superadmin User Management Routes
     Route::get('/usersuperadmin', [SuperadminController::class, 'usersuperadmin'])->name('superadmin_usersuperadmin');
     Route::get('/addsuperadmin', [SuperadminController::class, 'addsuperadmin'])->name('superadmin_addsuperadmin');
     Route::post('/addsuperadmin', [SuperadminController::class, 'addsuperadmin_submit'])->name('superadmin_addsuperadmin_submit');
-    Route::get('/editsuperadmin/{id}', [SuperadminController::class, 'editsuperadmin'])->name('superadmin_editsuperadmin');
-    Route::put('/editsuperadmin/{id}', [SuperadminController::class, 'editsuperadmin_submit'])->name('superadmin_editsuperadmin_submit');
-    Route::post('/changepassword/{id}', [SuperadminController::class, 'changepassword'])->name('superadmin_changepassword');
-    Route::put('/editsuperadmin_uploadprofilepicture/{id}', [SuperadminController::class, 'editsuperadmin_uploadprofilepicture'])->name('superadmin_editsuperadmin_uploadprofilepicture');
     Route::get('/editusersuperadmin/{id}', [SuperadminController::class, 'editusersuperadmin'])->name('superadmin_editusersuperadmin');
     Route::put('/editusersuperadmin/{id}', [SuperadminController::class, 'editusersuperadmin_submit'])->name('superadmin_editusersuperadmin_submit');
     Route::patch('/softdelete/{id}', [SuperadminController::class, 'softdelete'])->name('superadmin_softdelete');
-    Route::patch('/suspend/{id}', [SuperadminController::class, 'suspend'])->name('superadmin_suspend');    
+    Route::patch('/suspend/{id}', [SuperadminController::class, 'suspend'])->name('superadmin_suspend');
     Route::get('/usersuperadmin/export', [SuperadminController::class, 'exportusersuperadmin'])->name('superadmin_export_usersuperadmin');
 
     // Admin Management Routes
     Route::get('/useradmin', [SuperadminController::class, 'useradmin'])->name('superadmin_useradmin');
-    Route::get('/addadmin', [SuperadminController:: class, 'addadmin'])->name('superadmin_addadmin');
+    Route::get('/addadmin', [SuperadminController::class, 'addadmin'])->name('superadmin_addadmin');
     Route::post('/addadmin', [SuperadminController::class, 'addadmin_submit'])->name('superadmin_addadmin_submit');
     Route::get('/edituseradmin/{id}', [SuperadminController::class, 'edituseradmin'])->name('superadmin_edituseradmin');
     Route::put('/edituseradmin/{id}', [SuperadminController::class, 'edituseradmin_submit'])->name('superadmin_edituseradmin_submit');
     Route::patch('/adminsoftdelete/{id}', [SuperadminController::class, 'adminsoftdelete'])->name('superadmin_adminsoftdelete');
     Route::patch('/adminsuspend/{id}', [SuperadminController::class, 'adminsuspend'])->name('superadmin_adminsuspend');
     Route::get('/useradmin/export', [SuperadminController::class, 'exportuseradmin'])->name('superadmin_export_useradmin');
-
 
     // Client Admin Management Routes
     Route::get('/userclientadmin', [SuperadminController::class, 'userclientadmin'])->name('superadmin_userclientadmin');
@@ -73,27 +113,28 @@ Route::middleware('superadmin')->prefix('superadmin')->group(function(){
     Route::patch('/clientadminsuspend/{id}', [SuperadminController::class, 'clientadminadminsuspend'])->name('superadmin_clientadminsuspend');
     Route::get('/userclientadmin/export', [SuperadminController::class, 'exportuserclientadmin'])->name('superadmin_export_userclientadmin');
 
-
-    // User Management Routes
+    // User Employee Management Routes
     Route::get('/useremployee', [SuperadminController::class, 'useremployee'])->name('superadmin_useremployee');
-    // Import Employee Route
     Route::post('/useremployee/import', [SuperadminController::class, 'importemployee'])->name('superadmin_useremployee_import');
-    // Export Employee Route
     Route::get('/useremployee/export', [SuperadminController::class, 'exportemployee'])->name('superadmin_useremployee_export');
 
+    // End User Management Routes
+    // =========================================
+
+
+    // ========================================= 
     // Client Management Routes
     Route::get('/clientmanagement', [SuperadminController::class, 'clientmanagement'])->name('superadmin_clientmanagement');
     Route::get('/clients', [SuperadminController::class, 'clients'])->name('superadmin_clients');
     Route::get('/clients/{id}/viewclients', [SuperadminController::class, 'viewclients'])->name('superadmin_viewclients');
-    Route::get('/clients/{id}/editclients', [SuperadminController::class, 'editclients'])->name('superadmin_editclients');
-    Route::put('/clients/{id}', [SuperadminController::class, 'editclients_submit'])->name('superadmin_editclients_submit');
+    Route::get('/clients/{id}/editclient', [SuperadminController::class, 'editclient'])->name('superadmin_editclient');
+    Route::put('/clients/{id}', [SuperadminController::class, 'editclient_submit'])->name('superadmin_editclient_submit');
     Route::patch('/clients/{id}/softdelete', [SuperadminController::class, 'softdeleteclient'])->name('superadmin_softdeleteclient');
     Route::get('/addclient', [SuperadminController::class, 'addclient'])->name('superadmin_addclient');
     Route::post('/addclient', [SuperadminController::class, 'addclient_submit'])->name('superadmin_addclient_submit');
     Route::put('/editclient_uploadprofilepicture/{id}', [SuperadminController::class, 'editclient_uploadprofilepicture'])->name('superadmin_editclient_uploadprofilepicture');
     Route::post('/clients/import', [SuperadminController::class, 'importclients'])->name('superadmin_clients_import');
     Route::get('/clients/export', [SuperadminController::class, 'exportclients'])->name('superadmin_clients_export');
-
 
     // Branch Management Routes
     Route::get('/branches', [SuperadminController::class, 'branches'])->name('superadmin_branches');
@@ -105,31 +146,65 @@ Route::middleware('superadmin')->prefix('superadmin')->group(function(){
     Route::patch('/branches/{id}/softdelete', [SuperadminController::class, 'softdeletebranch'])->name('superadmin_softdeletebranch');
     Route::post('/branches/import', [SuperadminController::class, 'importbranches'])->name('superadmin_branches_import');
     Route::get('/branches/export', [SuperadminController::class, 'exportbranches'])->name('superadmin_branches_export');
+    // End Client Management Routes
+    // =========================================
 
-    
+
+    // =========================================
     // App Management Routes Start
+    //
     Route::get('/apps', [SuperadminController::class, 'apps'])->name('superadmin_apps');
-            // App Locator Routes
+
+    // =========================================
+    // App Locator Routes
     Route::get('/applocator', [SuperadminController::class, 'applocator'])->name('superadmin_applocator');
     Route::get('/applocatorclient', [SuperadminController::class, 'applocatorclient'])->name('superadmin_applocatorclient');
     Route::get('/applocatorbranch', [SuperadminController::class, 'applocatorbranch'])->name('superadmin_applocatorbranch');
+    Route::get('/applocatordata', [SuperadminController::class, 'applocatordata'])->name('superadmin_applocatordata');
     Route::get('/applocatoremployee', [SuperadminController::class, 'applocatoremployee'])->name('superadmin_applocatoremployee');
-    // App Management Routes End
+    Route::get('/applocatoremployee/search-users', [SuperadminController::class, 'searchUsers'])->name('superadmin_search_users');
+    Route::get('/applocatoremployeemap/{id}', [SuperadminController::class, 'applocatoremployeemap'])->name('superadmin_applocatoremployeemap');
+    // End App Locator Routes
+    // =========================================
+
+    // =========================================
+    // App People Routes
+    Route::get('/apppeople', [SuperadminController::class, 'apppeople'])->name('superadmin_apppeople');
+    Route::get('/apppeopleview/{id}', [SuperadminController::class, 'apppeopleview'])->name('superadmin_apppeopleview');
+    // End App People Routes
+    // =========================================
+
+    // =========================================
+    // App WorkForce Routes
+    Route::get('/appworkforce', [SuperadminController::class, 'appworkforce'])->name('superadmin_appworkforce');
+    Route::post('/appworkforce', [SuperadminController::class, 'appworkforce_submit'])->name('superadmin_workforce_submit');
+    // End App WorkForce Routes 
+    // =========================================
+
+    //
+    // End App Management Routes
+    // =========================================
 
 });
 
-// Prefix for Superadmin Routes
-Route::prefix('superadmin')->group(function(){
-    Route::get('/index', [SuperadminController::class, 'index'])->name('superadmin_index');
-    Route::post('/index',[SuperadminController::class, 'login_submit'])->name('superadmin_login_submit');
 
-    Route::get('/forget-password', [SuperadminController::class, 'forget_password'])->name('superadmin_forget_password');
-    Route::post('/forget-password',[SuperadminController::class, 'forget_password_submit'])->name('superadmin_forget_password_submit');
+// =========================================
+// Admin Routes
+//
+// Authenticated Admin Routes
+Route::middleware('admin')->prefix('admin')->group(function () {
 
-    Route::get('/reset-password/{token}/{email}',[SuperadminController::class, 'reset_password'])->name('superadmin_reset_password');
-    Route::post('/reset-password/{token}/{email}',[SuperadminController::class, 'reset_password_submit'])->name('superadmin_reset_password_submit');
+    // =========================================
+    // Admin Dashboard Page Route
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+    // =========================================
 
-    Route::get('/logout',[SuperadminController::class, 'logout'])->name('superadmin_logout');
+    // =========================================
+    // Admin Profile Routes
+    Route::get('/profile/{id}', [AdminController::class, 'editprofile'])->name('admin_profile');
+    Route::post('/profile/{id}', [AdminController::class, 'editprofile_submit'])->name('admin_profile_submit');
+    Route::put('/profile/{id}/uploadprofilepicture', [AdminController::class, 'uploadprofilepicture'])->name('uploadprofilepicture');
+    Route::post('/changepassword/{id}', [AdminController::class, 'changepassword'])->name('admin_changepassword');
 
 });
-
+// =========================================

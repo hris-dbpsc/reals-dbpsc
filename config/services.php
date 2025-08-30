@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -35,4 +34,8 @@ return [
         ],
     ],
 
+    // Google Maps API Key (public, for browser)
+    'google' => [
+        'maps_api_key' => env('MAPS_API_KEY'),
+    ],
 ];
