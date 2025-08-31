@@ -39,7 +39,7 @@
                             <div class="card mb-2 mb-xl-0">
                                 <div class="card-header text-body">Profile Picture</div>
                                 <div class="card-body text-center">
-                                    <form action="{{ route('uploadprofilepicture', Auth::guard('admin')->user()->id) }}" method="POST" enctype="multipart/form-data" id="profilePhotoForm">
+                                    <form action="{{ route('uploadprofilepicture', encrypt(Auth::guard('admin')->user()->id)) }}" method="POST" enctype="multipart/form-data" id="profilePhotoForm">
                                         @csrf
                                         @method('PUT')
                                         <!-- Profile picture image with cropping/zoom -->
@@ -252,7 +252,7 @@
                             <div class="card mb-2">
                                 <div class="card-header text-body">Profile Information</div>
                                 <div class="card-body">
-                                    <form action="{{ route('admin_profile', Auth::guard('admin')->user()->id) }}" method="POST">
+                                    <form action="{{ route('admin_profile', encrypt(Auth::guard('admin')->user()->id)) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <!-- Form Row-->
@@ -339,7 +339,7 @@
                             <div class="card mb-2">
                                 <div class="card-header text-body">Change Password</div>
                                 <div class="card-body">
-                                    <form action="{{ route('admin_changepassword', Auth::guard('admin')->user()->id) }}" method="POST">
+                                    <form action="{{ route('admin_changepassword', encrypt(Auth::guard('admin')->user()->id)) }}" method="POST">
                                         @csrf
                                         <div class="modal-body">
 

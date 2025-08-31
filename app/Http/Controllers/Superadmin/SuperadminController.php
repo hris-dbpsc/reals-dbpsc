@@ -74,6 +74,37 @@ class SuperadminController extends Controller
 
 
     // =========================================
+    // Access  Management Start
+
+    /**
+     * Display the Access Management page.
+     */
+    public function accessmanagement()
+    {
+        return view('superadmin.accessmanagement');
+    }
+
+    /**
+     * Display the User Permissions.
+     */
+    public function userpermissions()
+    {
+        return view('superadmin.userpermissions');
+    }
+
+    /**
+     * Display the App Permissions.
+     */
+    public function apppermissions()
+    {
+        return view('superadmin.apppermissions');
+    }
+
+    // End Access Management
+    // =========================================
+
+
+    // =========================================
     // Superadmin Account Management
 
     /**

@@ -5,17 +5,23 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>REALS - DBPSC</title>
-    <!-- Bootstrap & Vendor CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+    <!-- Preconnect for CDN performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6DQD5l5/2Q2l6b6bZ9E+Qp1hZl5Q5Q5Q5Q5Q5Q5Q5Q5Q" crossorigin="anonymous">
+    <!-- Vendor CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" />
     <!-- Favicon best practice: .ico, .png, and apple-touch-icon -->
     <link rel="icon" type="image/x-icon" href="https://dbpsc.com.ph/wp-content/uploads/2022/08/favicon1-150x150.png" />
-    <!-- FontAwesome, Feather, SweetAlert2 -->
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Vendor JS: FontAwesome, Feather, SweetAlert2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script data-search-pseudo-elements src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5.3 Bundle JS (no defer, must load before custom JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qQ2i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <style>
         body {
             background: #f8f9fa;
@@ -187,6 +193,10 @@
         .sidebar .nav-link i {
             width: 24px; height: 24px;
         }
+        .main-content {
+            margin-left: 220px;
+            padding: 2rem 1rem 4rem 1rem;
+        }
         @media (max-width: 768px) {
             .sidebar {
                 display: none !important;
@@ -215,28 +225,16 @@
             flex-direction: column;
             gap: 0.2rem;
             padding: 0.2rem 0.5rem;
-            border-top: 3px solid transparent; /* Consistent border for all */
-            background: transparent; /* Reset background for all */
+            border-top: 3px solid transparent;
+            background: transparent;
             transition: background 0.2s, color 0.2s, border-top 0.2s;
-            width: 100%; /* Ensure nav-link fills bottom bar width */
-            border-radius: 0; /* Remove border radius for full highlight */
+            width: 100%;
+            border-radius: 0;
         }
         .bottom-bar .nav-link.active {
             color: #007bff !important;
             border-top: 3px solid #007bff !important;
             background: #e9ecef !important;
-            width: 100%; /* Ensure highlight covers full width */
-            border-radius: 0 !important;
-        }
-        .main-content {
-            margin-left: 220px;
-            padding: 2rem 1rem 4rem 1rem;
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-                padding-bottom: 4.5rem;
-            }
         }
     </style>
 </head>

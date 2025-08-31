@@ -22,7 +22,7 @@
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('admin_profile', Auth::guard('admin')->user()->id) }}">
+                <a class="dropdown-item" href="{{ route('admin_profile', encrypt(Auth::guard('admin')->user()->id)) }}">
                     <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                     Account
                 </a>

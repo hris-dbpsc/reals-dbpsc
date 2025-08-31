@@ -24,13 +24,34 @@
             </div>
             <div class="sidenav-footer-title" style="font-weight:600;font-size:1em;">John Doe</div>
             <div class="text-muted" style="font-size:0.8em;font-style:italic;">johndoe@example.com</div>
-            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;" id="sidebarLogoutForm">
                 @csrf
-                <button type="submit" class="btn btn-outline-primary btn-sm w-100">
-                    <i data-feather="log-out" style="width: 16px; height: 16px; vertical-align: middle;" class="me-1"></i>
+                <!-- Logout Button triggers modal -->
+                <button type="button" class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
+                    data-bs-toggle="modal" data-bs-target="#logoutModal" autocomplete="off">
+                    <i data-feather="log-out" class="me-2"></i>
                     Logout
                 </button>
             </form>
+
+            <!-- Logout Confirmation Modal -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to logout?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="logoutConfirmBtn" autocomplete="off">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
@@ -48,4 +69,13 @@
         </span>
     </a>
 </nav>
-<!-- No inline JS: all logic is now in the footer partial. -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var logoutBtn = document.getElementById('logoutConfirmBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function () {
+                document.getElementById('sidebarLogoutForm').submit();
+            });
+        }
+    });
+</script>

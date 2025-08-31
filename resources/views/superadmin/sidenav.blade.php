@@ -41,6 +41,28 @@
                         </a>
                     </nav>
                 </div>
+                <!-- Sidenav Access Management-->
+                <a class="nav-link" href="{{ route('superadmin_accessmanagement') }}">
+                    <div class="sidenav-menu-heading">Access Management</div>
+                </a>
+                <!-- Sidenav Accordion (Layout)-->
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#viewpermissions" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                    View Permissions
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="viewpermissions" data-bs-parent="#accordionSidenavPagesMenu">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('superadmin_userpermissions') }}">
+                            <div class="nav-link-icon"><i data-feather="users"></i></div>
+                            User Permissions
+                        </a>
+                        <a class="nav-link" href="{{ route('superadmin_apppermissions') }}">
+                            <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                            App Permissions
+                        </a>
+                    </nav>
+                </div>
                 <!-- Sidenav Client Management-->
                 <a class="nav-link" href="{{ route('superadmin_clientmanagement') }}">
                     <div class="sidenav-menu-heading">Client Management</div>

@@ -77,20 +77,3 @@
         </div>
     </div>
 </div>
-<script>
-// Maintain selected view/tab on refresh using localStorage
-(function() {
-    document.addEventListener('DOMContentLoaded', function() {
-        // Restore last selected page
-        var lastPage = localStorage.getItem('admin_last_page') || 'home';
-        showPage(lastPage);
-        // Save page on nav click
-        ['home','apps','profile'].forEach(function(page) {
-            var nav = document.getElementById('nav-' + page);
-            var bottom = document.getElementById('bottom-' + page);
-            if(nav) nav.addEventListener('click', function(){ localStorage.setItem('admin_last_page', page); });
-            if(bottom) bottom.addEventListener('click', function(){ localStorage.setItem('admin_last_page', page); });
-        });
-    });
-})();
-</script>

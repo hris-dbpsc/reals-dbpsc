@@ -1,7 +1,9 @@
 <footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        feather.replace();
+        // Feather icons
+        if (window.feather) feather.replace();
+
         // Navigation logic for Home, Apps, Profile
         function showPage(page) {
             document.querySelectorAll('.main-content [id^="page-"]').forEach(el => el.style.display = 'none');
@@ -26,6 +28,8 @@
             if (sidebarSwitch) sidebarSwitch.checked = isDark;
         }
         document.addEventListener('DOMContentLoaded', function() {
+            // Set Home as default landing page
+            showPage('home');
             var sidebarSwitch = document.getElementById('darkModeSwitchDesktop');
             setDarkModeState(localStorage.getItem('darkMode') === 'true');
             syncSidebarSwitch();
@@ -42,6 +46,15 @@
                 setDarkModeState(localStorage.getItem('darkMode') === 'true');
                 syncSidebarSwitch();
             });
+
+            // Logout modal logic (global)
+            var logoutBtn = document.getElementById('logoutConfirmBtn');
+            var logoutForm = document.getElementById('sidebarLogoutForm');
+            if (logoutBtn && logoutForm) {
+                logoutBtn.addEventListener('click', function() {
+                    logoutForm.submit();
+                });
+            }
         });
 
         // Inject dark mode toggle into profile page top-right only on mobile

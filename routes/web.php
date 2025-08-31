@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+Route::get('/mobile', function () {
+    return view('mobilefirst.dashboard');
+})->name('mobile');
 // =========================================
 
 
@@ -77,6 +80,14 @@ Route::middleware('superadmin')->prefix('superadmin')->group(function () {
     Route::put('/editsuperadmin/{id}', [SuperadminController::class, 'editsuperadmin_submit'])->name('superadmin_editsuperadmin_submit');
     Route::put('/editsuperadmin_uploadprofilepicture/{id}', [SuperadminController::class, 'editsuperadmin_uploadprofilepicture'])->name('superadmin_editsuperadmin_uploadprofilepicture');
     Route::post('/changepassword/{id}', [SuperadminController::class, 'changepassword'])->name('superadmin_changepassword');
+    // =========================================
+   
+    // =========================================
+    // Access Management Routes
+    Route::get('/accessmanagement', [SuperadminController::class, 'accessmanagement'])->name('superadmin_accessmanagement');
+    Route::get('/userpermissions', [SuperadminController::class, 'userpermissions'])->name('superadmin_userpermissions');
+    Route::get('/apppermissions', [SuperadminController::class, 'apppermissions'])->name('superadmin_apppermissions');
+    // End Access Management Routes
     // =========================================
 
     // =========================================
@@ -188,6 +199,8 @@ Route::middleware('superadmin')->prefix('superadmin')->group(function () {
 });
 
 
+
+
 // =========================================
 // Admin Routes
 //
@@ -202,7 +215,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     // =========================================
     // Admin Profile Routes
     Route::get('/profile/{id}', [AdminController::class, 'editprofile'])->name('admin_profile');
-    Route::post('/profile/{id}', [AdminController::class, 'editprofile_submit'])->name('admin_profile_submit');
+    Route::put('/profile/{id}', [AdminController::class, 'editprofile_submit'])->name('admin_profile_submit');
     Route::put('/profile/{id}/uploadprofilepicture', [AdminController::class, 'uploadprofilepicture'])->name('uploadprofilepicture');
     Route::post('/changepassword/{id}', [AdminController::class, 'changepassword'])->name('admin_changepassword');
 

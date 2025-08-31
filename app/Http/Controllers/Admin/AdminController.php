@@ -36,6 +36,7 @@ class AdminController extends Controller
      */
     public function editprofile(Request $request, $id)
     {
+        $id = decrypt($id);
         $admin = Admin::find($id);
         return view('admin.profile', compact('admin'));
     }
@@ -47,15 +48,20 @@ class AdminController extends Controller
     {
         $request->validate([
             'firstname' => 'required',
-            'middlename' => 'required',
+            'middlename' => 'nullable',
             'lastname' => 'required',
             'email' => 'required|email',
             'contact' => 'required|numeric',
         ]);
 
-        $admin = Admin::find($request->id);
+        $id = decrypt($request->id);
+        $admin = Admin::find($id);
 
-        $Admin->update([
+        if (!$admin) {
+            return redirect()->back()->with('error', 'Admin not found.');
+        }
+
+        $admin->update([
             'firstname' => $request->firstname,
             'middlename' => $request->middlename,
             'lastname' => $request->lastname,
@@ -75,7 +81,8 @@ class AdminController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $admin = Admin::find($request->id);
+        $id = decrypt($request->id);
+        $admin = Admin::find($id);
 
         if (!$admin) {
             return redirect()->back()->with('error', 'Admin not found.');
@@ -116,7 +123,8 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Please fill all fields')->withInput();
         }
 
-        $admin = Admin::find($request->id);
+        $id = decrypt($request->id);
+        $admin = Admin::find($id);
 
         if (!$admin || !Hash::check($request->oldpassword, $admin->password)) {
             return redirect()->back()->with('error', 'Old password is incorrect.');
