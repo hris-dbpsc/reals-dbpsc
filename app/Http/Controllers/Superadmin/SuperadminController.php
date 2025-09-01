@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\Branches;
 use App\Models\Api_Keys;
+use App\Models\Applications;
+use App\Models\ApplicationsAccess;
 use App\Mail\Websitemail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -74,34 +76,167 @@ class SuperadminController extends Controller
 
 
     // =========================================
-    // Access  Management Start
+    // App Management Start
 
     /**
-     * Display the Access Management page.
+     * Display the App List.
      */
-    public function accessmanagement()
+    public function applist()
     {
-        return view('superadmin.accessmanagement');
+        $applications = Applications::where('isactive', 1)->get();
+        return view('superadmin.applist', compact('applications'));
     }
 
     /**
-     * Display the User Permissions.
+     * Add Application route.
      */
-    public function userpermissions()
+    public function addapplication()
     {
-        return view('superadmin.userpermissions');
+        return view('superadmin.addapplication');
     }
 
     /**
-     * Display the App Permissions.
+     * Add Application route.
      */
-    public function apppermissions()
+    public function addapplication_submit(Request $request)
     {
-        return view('superadmin.apppermissions');
+        $request->validate([
+            'appname' => 'required|unique:applications,appname',
+            'applabel' => 'required',
+        ]);
+
+        $application = new Applications();
+        $application->appname = $request->appname;
+        $application->applabel = $request->applabel;
+        $application->save();
+
+        return redirect()->route('superadmin_applist')->with('success', 'Application added successfully.');
     }
 
-    // End Access Management
+    /**
+     * Edit Application route.
+     */
+    public function editapplication(Request $request, $id)
+    {
+        $application = Applications::find($id);
+        return view('superadmin.editapplication', compact('application'));
+    }
+
+    /**
+     * Edit Application Submit
+     */
+    public function editapplication_submit(Request $request, $id)
+    {
+        $request->validate([
+            'appname' => 'required|unique:applications,appname,' . $id,
+            'applabel' => 'required',
+        ]);
+
+        $application = Applications::find($id);
+
+        $application->appname = $request->appname;
+        $application->applabel = $request->applabel;
+        $application->save();
+
+        return redirect()->route('superadmin_applist')->with('success', 'Application updated successfully.');
+    }
+
+    /**
+     * Soft delete Application (set isactive to 0)
+     */
+    public function softdeleteapplication(Request $request, $id)
+    {
+        $application = Applications::find($id);
+        $application->isactive = 0;
+        $application->save();
+
+        return redirect()->route('superadmin_applist')->with('success', 'Application deactivated successfully.');
+    }
+
+    /**
+     * App Access Route
+     */
+    public function appaccess()
+    {
+        $clients = Client::where('isactive', 1)->get();
+        return view('superadmin.appaccess', compact('clients'));
+    }
+
+    /**
+     * Add App Access
+     */
+    public function addappaccess()
+    {
+        $clients = Client::where('isactive', 1)->get();
+        $applications = Applications::where('isactive', 1)->get();
+        $applications_access = ApplicationsAccess::get();
+        return view('superadmin.addappaccess', compact('clients', 'applications', 'applications_access'));
+    }
+
+    /**
+     * Add App Access Submit
+     */
+    public function addappaccess_submit(Request $request)
+    {
+        $request->validate([
+            'clientid' => 'required|unique:applications_access,clientid',
+        ]);
+
+        // Dynamically handle app_X checkboxes
+        $appFields = [];
+        foreach ($request->all() as $key => $value) {
+            if (preg_match('/^app_\d+$/', $key)) {
+                $appFields[$key] = $value ? 1 : 0;
+            }
+        }
+
+        $access = new ApplicationsAccess();
+        $access->clientid = $request->clientid;
+        // Dynamically assign all app_X fields based on the request data
+        foreach ($appFields as $key => $value) {
+            $access->$key = $value;
+        }
+        $access->save();
+
+        return redirect()->route('superadmin_appaccess')->with('success', 'App access updated successfully.');
+    }
+
+    /**
+     * Edit App Access
+     */
+    public function editappaccess($id)
+    {
+        $clients = Client::where('isactive', 1)->get();
+        $applications = Applications::where('isactive', 1)->get();
+        $applications_access = ApplicationsAccess::find($id);
+        return view('superadmin.editappaccess', compact('clients', 'applications', 'applications_access'));
+    }
+
+    /**
+     * Edit App Access Submit
+     */
+    public function editappaccess_submit(Request $request, $id)
+    {
+        $access = ApplicationsAccess::findOrFail($id);
+        $applications = Applications::where('isactive', 1)->get();
+
+        foreach ($applications as $application) {
+            $field = 'app_' . $application->id;
+            $access->$field = $request->has($field) ? 1 : 0;
+        }
+
+        $access->save();
+
+        return redirect()->route('superadmin_appaccess')->with('success', 'Application access updated successfully.');
+    }
+    // End App Management
     // =========================================
+
+
+
+
+
+
 
 
     // =========================================

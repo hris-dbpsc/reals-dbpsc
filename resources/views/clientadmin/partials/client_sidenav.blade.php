@@ -107,17 +107,6 @@
                             <div class="nav-link-icon"><i data-feather="clock"></i></div>
                             TimeLog
                         </a>
-                        <hr style="margin: 0.4rem 0;"/>
-                        <span style="font-size: 0.85em; margin-left: 0.5rem; vertical-align: middle;">App Management</span>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="{{ route('superadmin_applist') }}">
-                            <div class="nav-link-icon"><i data-feather="list"></i></div>
-                            Apps List
-                        </a>
-                        <a class="nav-link" href="{{ route('superadmin_appaccess') }}">
-                            <div class="nav-link-icon"><i data-feather="link-2"></i></div>
-                            Apps Access
-                        </a>
                     </nav>
                 </div>
             </div>
@@ -128,15 +117,15 @@
                 <div class="sidenav-footer-subtitle">
                     Logged in as:
                     <span class="badge bg-light text-body">
-                        {{ ucfirst(Auth::guard('superadmin')->user()->role ?? 'Superadmin') }}
+                        {{ ucfirst(Auth::guard('clientadmin')->user()->role ?? 'clientadmin') }}
                     </span>
                 </div>
                 <div class="sidenav-footer-title">
-                    {{ Auth::guard('superadmin')->user()->firstname }} {{ Auth::guard('superadmin')->user()->lastname }}
+                    {{ Auth::guard('clientadmin')->user()->firstname }} {{ Auth::guard('clientadmin')->user()->lastname }}
 
                 </div>
                 <div class="text-muted" style="font-size: 0.8em; font-style: italic;">
-                    {{ Auth::guard('superadmin')->user()->email }}
+                    {{ Auth::guard('clientadmin')->user()->email }}
                 </div>
                 <div class="text-muted" style="font-size: 0.8em;">
                     <!-- Device: {{ php_uname('n') }}<br> -->

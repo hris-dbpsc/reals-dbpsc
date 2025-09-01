@@ -83,10 +83,18 @@ Route::middleware('superadmin')->prefix('superadmin')->group(function () {
     // =========================================
    
     // =========================================
-    // Access Management Routes
-    Route::get('/accessmanagement', [SuperadminController::class, 'accessmanagement'])->name('superadmin_accessmanagement');
-    Route::get('/userpermissions', [SuperadminController::class, 'userpermissions'])->name('superadmin_userpermissions');
-    Route::get('/apppermissions', [SuperadminController::class, 'apppermissions'])->name('superadmin_apppermissions');
+    // App Management Routes
+    Route::get('/applist', [SuperadminController::class, 'applist'])->name('superadmin_applist');
+    Route::get('/addapplication', [SuperadminController::class, 'addapplication'])->name('superadmin_addapplication');
+    Route::post('/addapplication', [SuperadminController::class, 'addapplication_submit'])->name('superadmin_addapplication_submit');
+    Route::get('/editapplication/{id}', [SuperadminController::class, 'editapplication'])->name('superadmin_editapplication');
+    Route::put('/editapplication/{id}', [SuperadminController::class, 'editapplication_submit'])->name('superadmin_editapplication_submit');
+    Route::patch('/softdeleteapplication/{id}', [SuperadminController::class, 'softdeleteapplication'])->name('superadmin_softdeleteapplication');
+    Route::get('/appaccess', [SuperadminController::class, 'appaccess'])->name('superadmin_appaccess');
+    Route::get('/addappaccess', [SuperadminController::class, 'addappaccess'])->name('superadmin_addappaccess');
+    Route::post('/addappaccess', [SuperadminController::class, 'addappaccess_submit'])->name('superadmin_addappaccess_submit');
+    Route::get('/editappaccess/{id}', [SuperadminController::class, 'editappaccess'])->name('superadmin_editappaccess');
+    Route::put('/editappaccess/{id}', [SuperadminController::class, 'editappaccess_submit'])->name('superadmin_editappaccess_submit');
     // End Access Management Routes
     // =========================================
 
@@ -218,6 +226,30 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::put('/profile/{id}', [AdminController::class, 'editprofile_submit'])->name('admin_profile_submit');
     Route::put('/profile/{id}/uploadprofilepicture', [AdminController::class, 'uploadprofilepicture'])->name('uploadprofilepicture');
     Route::post('/changepassword/{id}', [AdminController::class, 'changepassword'])->name('admin_changepassword');
+
+});
+// =========================================
+
+
+
+
+// =========================================
+// Client Admin Routes
+//
+// Authenticated Client Admin Routes
+Route::middleware('clientadmin')->prefix('clientadmin')->group(function () {
+
+    // =========================================
+    // Client Admin Dashboard Page Route
+    Route::get('/dashboard', [ClientadminController::class, 'dashboard'])->name('clientadmin_dashboard');
+    // =========================================
+
+    // =========================================
+    // Client Admin Profile Routes
+    Route::get('/profile/{id}', [ClientadminController::class, 'editprofile'])->name('clientadmin_profile');
+    Route::put('/profile/{id}', [ClientadminController::class, 'editprofile_submit'])->name('clientadmin_profile_submit');
+    Route::put('/profile/{id}/uploadprofilepicture', [ClientadminController::class, 'uploadprofilepicture'])->name('uploadprofilepicture');
+    Route::post('/changepassword/{id}', [ClientadminController::class, 'changepassword'])->name('clientadmin_changepassword');
 
 });
 // =========================================
