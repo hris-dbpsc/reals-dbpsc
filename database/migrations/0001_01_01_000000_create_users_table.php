@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('employeenumber');
-            $table->string('clientname')->nullable();
+            $table->foreignId('clientid')->nullable()->constrained('clients')->onDelete('set null');
             $table->string('branchname')->nullable();
             $table->string('departmentname')->nullable();
             $table->string('position')->nullable();
@@ -51,6 +51,7 @@ return new class extends Migration
             $table->string('role')->default('user'); // Default role for users
             $table->string('isactive')->default('1'); // 1 for active, 0 for inactive, 2 for suspended
             $table->string('token')->nullable(); // For password reset or API token
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
 

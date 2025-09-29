@@ -26,7 +26,7 @@ class Clientadmin extends Authenticatable
         'photo',
         'password',
         'role',
-        'clientname',
+        'clientid',
         'isactive',
     ];
 

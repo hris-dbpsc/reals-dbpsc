@@ -19,27 +19,27 @@ class BranchesExport implements FromCollection, WithHeadings
     }
     public function collection()
     {
-        $query = Branches::select(
-            'clientname',
-            'clientshortname',
-            'clienttype',
-            'branchname',
-            'branchgeolocation',
-            'branchstreetview',
-            'branchcontact',
-            'branchcontactperson',
-            'branchaddress',
-            'branchregion',
-            'branchprovince',
-            'branchcity'
-        );
+        $query = Branches::leftJoin('clients', 'branches.clientid', '=', 'clients.id')
+            ->select(
+                'clients.clientname as clientname',
+                'clients.clientshortname as clientshortname',
+                'clients.clienttype as clienttype',
+                'branches.branchname',
+                'branches.branchgeolocation',
+                'branches.branchstreetview',
+                'branches.branchcontact',
+                'branches.branchcontactperson',
+                'branches.branchaddress',
+                'branches.branchregion',
+                'branches.branchprovince',
+                'branches.branchcity'
+            );
 
-     
         if ($this->clientshortname && $this->clientshortname !== 'ALL CLIENTS') {
-            $query->where('clientshortname', $this->clientshortname);
+            $query->where('clients.clientshortname', $this->clientshortname);
         }
 
-        $query->orderBy('clientname', 'asc');
+        $query->orderBy('clients.clientname', 'asc');
 
         return $query->get();
     }

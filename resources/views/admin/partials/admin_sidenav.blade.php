@@ -3,15 +3,15 @@
         <div class="sidenav-menu">
             <div class="nav accordion" id="accordionSidenav">
                 <!-- Sidenav Menu Heading (Core)-->
-                <a class="nav-link" href="{{ route('superadmin_dashboard') }}">
+                <a class="nav-link" href="{{ route('admin_dashboard') }}">
                 </a>
                 <!-- Sidenav Accordion (Dashboard)-->
-                <a class="nav-link" href="{{ route('superadmin_dashboard') }}">
+                <a class="nav-link" href="{{ route('admin_dashboard') }}">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     Dashboard
                 </a>
                 <!-- Sidenav User Management -->
-                <a class="nav-link" href="{{ route('superadmin_usermanagement') }}">
+                <a class="nav-link" href="{{ route('admin_useremployee') }}">
                     <div class="sidenav-menu-heading">User Management</div>
                 </a>
                 <!-- Sidenav Accordion (Pages)-->
@@ -23,26 +23,14 @@
                 <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                         <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                        <a class="nav-link" href="{{ route('superadmin_usersuperadmin') }}">
-                            <div class="nav-link-icon"><i data-feather="user"></i></div>
-                            Superadmin
-                        </a>
-                        <a class="nav-link" href="{{ route('superadmin_useradmin') }}">
-                            <div class="nav-link-icon"><i data-feather="user"></i></div>
-                            Admin
-                        </a>
-                        <a class="nav-link" href="{{ route('superadmin_userclientadmin') }}">
-                            <div class="nav-link-icon"><i data-feather="user"></i></div>
-                            Client Admin
-                        </a>
-                        <a class="nav-link" href="{{ route('superadmin_useremployee') }}">
+                        <a class="nav-link" href="{{ route('admin_useremployee') }}">
                             <div class="nav-link-icon"><i data-feather="user"></i></div>
                             Users
                         </a>
                     </nav>
                 </div>
                 <!-- Sidenav Client Management-->
-                <a class="nav-link" href="{{ route('superadmin_clientmanagement') }}">
+                <a class="nav-link" href="{{ route('admin_clientmanagement') }}">
                     <div class="sidenav-menu-heading">Client Management</div>
                 </a>
                 <!-- Sidenav Accordion (Layout)-->
@@ -53,18 +41,18 @@
                 </a>
                 <div class="collapse" id="viewclients" data-bs-parent="#accordionSidenavPagesMenu">
                     <nav class="sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('superadmin_clients') }}">
+                        <a class="nav-link" href="{{ route('admin_clients') }}">
                             <div class="nav-link-icon"><i data-feather="users"></i></div>
                             Clients
                         </a>
-                        <a class="nav-link" href="{{ route('superadmin_branches') }}">
+                        <a class="nav-link" href="{{ route('admin_branches') }}">
                             <div class="nav-link-icon"><i data-feather="list"></i></div>
                             Branches
                         </a>
                     </nav>
                 </div>
                 <!-- Applications-->
-                <a class="nav-link" href="{{ route('superadmin_apps') }}">
+                <a class="nav-link" href="{{ route('admin_apps') }}">
                     <div class="sidenav-menu-heading">Applications</div>
                 </a>
                 <!-- Sidenav Accordion (Layout)-->
@@ -76,37 +64,42 @@
                 <div class="collapse" id="viewapps" data-bs-parent="#accordionSidenavPagesMenu">
                     <nav class="sidenav-menu-nested nav">
                         <!-- Sidenav Link (Charts)-->
-                        <a class="nav-link" href="{{ route('superadmin_apppeople') }}">
+                        @if(!empty($canAccessPeopleApp))
+                        <a class="nav-link" href="{{ route('admin_people') }}">
                             <div class="nav-link-icon"><i data-feather="user"></i></div>
                             People
                         </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="{{ route('superadmin_appworkforce') }}">
+                        @endif
+                        @if(!empty($canAccessWatsonsWorkforceApp))
+                        <a class="nav-link" href="{{ route('admin_watsonsworkforce') }}">
                             <div class="nav-link-icon"><i data-feather="users"></i></div>
                             WorkForce
                         </a>
-                        </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="#!">
+                        @endif
+                        @if(!empty($canAccessTimeoffApp))
+                        <a class="nav-link" href="{{ route('admin_timeoff') }}">
                             <div class="nav-link-icon"><i data-feather="calendar"></i></div>
                             TimeOff
                         </a>
-                        </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="{{ route('superadmin_applocator') }}">
+                        @endif
+                        @if(!empty($canAccessLocatorApp))
+                        <a class="nav-link" href="{{ route('admin_locator') }}">
                             <div class="nav-link-icon"><i data-feather="map-pin"></i></div>
                             Locator
                         </a>
-                        <!-- Sidenav Link (Tables)-->
+                        @endif
+                        @if(!empty($canAccessWorkchatApp))
                         <a class="nav-link" href="#!">
                             <div class="nav-link-icon"><i data-feather="message-square"></i></div>
                             WorkChat
                         </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="#!">
+                        @endif
+                        @if(!empty($canAccessTimelogApp))
+                        <a class="nav-link" href="{{ route('admin_timelog') }}">
                             <div class="nav-link-icon"><i data-feather="clock"></i></div>
                             TimeLog
                         </a>
+                        @endif
                     </nav>
                 </div>
             </div>

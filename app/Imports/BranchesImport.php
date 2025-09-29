@@ -16,8 +16,7 @@ class BranchesImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Branches([
-            'clientname' => $row['clientname'],
-            'clientshortname' => $row['clientshortname'],
+            'clientid' => $row['clientid'],
             'clienttype' => $row['clienttype'],
             'branchname' => $row['branchname'],
             'branchgeolocation' => $row['branchgeolocation'],

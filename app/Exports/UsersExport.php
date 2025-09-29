@@ -21,45 +21,46 @@ class UsersExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $query = User::select(
-            'employeenumber',
-            'clientname',
-            'branchname',
-            'departmentname',
-            'position',
-            'lastname',
-            'firstname',
-            'middlename',
-            'dateofbirth',
-            'gender', 
-            'assumptiondate',
-            'startdate',
-            'enddate',
-            'templatename',
-            'hiretype',
-            'wagetype',
-            'paymode',
-            'salaryrate', 
-            'billingrate',
-            'positioncategory',
-            'leavecredits',
-            'civilstatus',
-            'address',
-            'contact',
-            'tin',
-            'sssnumber',
-            'phicnumber',
-            'hdmfnumber',
-            'lastpaydate',
-            'region',
-            'email'
-        );
+        $query = User::leftJoin('clients', 'users.clientid', '=', 'clients.id')
+            ->select(
+                'users.employeenumber',
+                'clients.clientname as clientname',
+                'users.branchname',
+                'users.departmentname',
+                'users.position',
+                'users.lastname',
+                'users.firstname',
+                'users.middlename',
+                'users.dateofbirth',
+                'users.gender',
+                'users.assumptiondate',
+                'users.startdate',
+                'users.enddate',
+                'users.templatename',
+                'users.hiretype',
+                'users.wagetype',
+                'users.paymode',
+                'users.salaryrate',
+                'users.billingrate',
+                'users.positioncategory',
+                'users.leavecredits',
+                'users.civilstatus',
+                'users.address',
+                'users.contact',
+                'users.tin',
+                'users.sssnumber',
+                'users.phicnumber',
+                'users.hdmfnumber',
+                'users.lastpaydate',
+                'users.region',
+                'users.email'
+            );
 
         if ($this->clientshortname && $this->clientshortname !== 'ALL CLIENTS') {
-            $query->where('clientname', $this->clientshortname);
+            $query->where('clients.clientshortname', $this->clientshortname);
         }
 
-        $query->orderBy('clientname', 'asc');
+        $query->orderBy('clients.clientname', 'asc');
 
         return $query->get();
     }

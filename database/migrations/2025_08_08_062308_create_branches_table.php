@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('clientname');
-            $table->string('clientshortname')->nullable();
+            $table->foreignId('clientid')->nullable()->constrained('clients')->onDelete('set null');
             $table->string('branchname');     
             $table->string('branchcontact')->nullable();  
             $table->string('branchcontactperson')->nullable();

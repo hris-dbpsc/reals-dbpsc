@@ -1,3 +1,16 @@
+<?php
+// Redirect authenticated users to their dashboard before rendering the login page.
+// This prevents rendering the login form when there is an existing session for any guard.
+try {
+    if (auth()->guard('superadmin')->check()) { redirect()->route('superadmin_dashboard')->send(); }
+    if (auth()->guard('admin')->check()) { redirect()->route('admin_dashboard')->send(); }
+    if (auth()->guard('clientadmin')->check()) { redirect()->route('clientadmin_dashboard')->send(); }
+    if (auth()->guard('user')->check()) { redirect()->route('user_dashboard')->send(); }
+} catch (\Throwable $e) {
+    // If session/redirect fails for any reason, continue to render the page.
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 @include('home.header')
@@ -35,7 +48,7 @@
                                             <i data-feather="user"></i>
                                         </span>
                                     </div>
-                                    <div class="form-floating mb-2 position-relative">
+                                    <div class="form-floating mb-4 position-relative">
                                         <input class="form-control form-control-solid pe-5" type="password" name="password" id="passwordExample" placeholder="Password" required>
                                         <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor:pointer;" id="togglePasswordBtn">
                                             <i id="togglePasswordIcon" data-feather="eye"></i>
@@ -52,18 +65,19 @@
                                         {{ session('success')}}
                                     </div>
                                     @endif
-                                    <div class="d-flex justify-content-center mb-3">
-                                        <button class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center shadow-lg" type="submit" style="font-weight: 600; font-size: 1.1rem;">
-                                            <i data-feather="log-in" class="me-1"></i> Login
-                                        </button>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check mb-0">
                                             <input class="form-check-input" id="checkRememberPassword" type="checkbox" name="remember" />
                                             <label class="form-check-label" for="checkRememberPassword">Remember password</label>
                                         </div>
                                         <a class="small ms-2" href="{{ route('forget_password') }}">Forgot your password?</a>
                                     </div>
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <button class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center shadow-lg" type="submit" style="font-weight: 600; font-size: 1.1rem;">
+                                            <i data-feather="log-in" class="me-1"></i> Log in
+                                        </button>
+                                    </div>
+
                                 </form>
                             </div>
                             <hr class="my-0" />

@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('applications_access', function (Blueprint $table) {
             $table->id();
-            $table->string('clientid');
-            $table->string('app_1')->nullable();
-            $table->string('app_2')->nullable();
-            $table->string('app_3')->nullable();
-            $table->string('app_4')->nullable();
-            $table->string('app_5')->nullable();
-            $table->string('app_6')->nullable();
-            $table->string('app_7')->nullable();
-            $table->string('app_8')->nullable();
-            $table->string('app_9')->nullable();
-            $table->string('app_10')->nullable();
+            $table->unsignedBigInteger('clientid');
+            $table->boolean('app_1')->default(false);
+            $table->boolean('app_2')->default(false);
+            $table->boolean('app_3')->default(false);
+            $table->boolean('app_4')->default(false);
+            $table->boolean('app_5')->default(false);
+            $table->boolean('app_6')->default(false);
+            $table->boolean('app_7')->default(false);
+            $table->boolean('app_8')->default(false);
+            $table->boolean('app_9')->default(false);
+            $table->boolean('app_10')->default(false);
             $table->timestamps();
         });
     }

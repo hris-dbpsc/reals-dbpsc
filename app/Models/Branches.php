@@ -23,5 +23,9 @@ class Branches extends Model
         'isactive',
         'encodedby'
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'clientname', 'clientname');
+    }
 }
-       

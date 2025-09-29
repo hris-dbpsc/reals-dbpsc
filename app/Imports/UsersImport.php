@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use App\Models\Client;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -34,6 +35,29 @@ class UsersImport implements ToModel, WithHeadingRow
             }
         }
 
+        // Determine clientid
+        $clientId = null;
+        if (!empty($row['client'])) {
+            if (is_numeric($row['client'])) {
+                // If the value is numeric, assume it's the client ID
+                $clientId = $row['client'];
+                $clientExists = Client::find($clientId);
+                if (!$clientExists) {
+                    $errors[] = "Client ID '{$row['client']}' not found at row " . ($rowNumber ?? '[unknown]');
+                }
+            } else {
+                // Otherwise, try to look up by name or shortname
+                $client = Client::where('clientname', $row['client'])
+                    ->orWhere('clientshortname', $row['client'])
+                    ->first();
+                if ($client) {
+                    $clientId = $client->id;
+                } else {
+                    $errors[] = "Client '{$row['client']}' not found at row " . ($rowNumber ?? '[unknown]');
+                }
+            }
+        }
+
         // If there are errors, display all errors and the full row data
         if (!empty($errors)) {
             $rowDetails = print_r($row, true);
@@ -44,7 +68,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
         return new User([
             'employeenumber' => $row['employeeid'],
-            'clientname' => $row['client'],
+            'clientid' => $clientId,
             'branchname' => $row['branch_name'],
             'departmentname' => $row['department'],
             'position' => $row['position'],

@@ -39,7 +39,7 @@
                             <div class="card mb-2 mb-xl-0">
                                 <div class="card-header text-body">Profile Picture</div>
                                 <div class="card-body text-center">
-                                    <form action="{{ route('uploadprofilepicture', encrypt(Auth::guard('clientadmin')->user()->id)) }}" method="POST" enctype="multipart/form-data" id="profilePhotoForm">
+                                    <form action="{{ route('clientadmin_uploadprofilepicture', encrypt(Auth::guard('clientadmin')->user()->id)) }}" method="POST" enctype="multipart/form-data" id="profilePhotoForm">
                                         @csrf
                                         @method('PUT')
                                         <!-- Profile picture image with cropping/zoom -->

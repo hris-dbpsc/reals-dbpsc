@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Branches;
+use App\Models\Client;
+
 
 class User extends Authenticatable
 {
@@ -17,7 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'employeenumber',
-        'clientname',
+        'clientid',
         'branchname',
         'departmentname',
         'position',
@@ -53,4 +56,15 @@ class User extends Authenticatable
         'isactive',
         'token',
     ];
+
+    public function branch()
+    {
+        return $this->belongsTo(Branches::class, 'branchname', 'branchname');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'clientid', 'id');
+    }
+
 }

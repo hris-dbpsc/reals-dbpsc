@@ -26,27 +26,39 @@ class LoginController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
+        // Ensure any existing authentication state is cleared for all guards
+        // This avoids having multiple guard sessions active in the same browser/session.
+        $allGuards = ['superadmin', 'admin', 'clientadmin', 'user'];
+        foreach ($allGuards as $g) {
+            try { auth()->guard($g)->logout(); } catch (\Throwable $e) { /* ignore */ }
+        }
+        // Invalidate current session and regenerate CSRF token
+        try {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } catch (\Throwable $e) { /* ignore session driver issues */ }
+
         // =========================
         // Multi-Auth Authentication
         // =========================
         $roles = [
             [
-                'model' => \App\Models\Superadmin::class,
+                'model' => Superadmin::class,
                 'guard' => 'superadmin',
                 'dashboard' => 'superadmin_dashboard',
             ],
             [
-                'model' => \App\Models\Admin::class,
+                'model' => Admin::class,
                 'guard' => 'admin',
                 'dashboard' => 'admin_dashboard',
             ],
             [
-                'model' => \App\Models\Clientadmin::class,
+                'model' => Clientadmin::class,
                 'guard' => 'clientadmin',
                 'dashboard' => 'clientadmin_dashboard',
             ],
             [
-                'model' => \App\Models\User::class,
+                'model' => User::class,
                 'guard' => 'user',
                 'dashboard' => 'user_dashboard',
             ],
@@ -68,6 +80,8 @@ class LoginController extends Controller
                     }
                     $credentials = ['employeenumber' => $username, 'password' => $password];
                     if (auth()->guard('user')->attempt($credentials)) {
+                        // regenerate session id for the newly authenticated user
+                        try { $request->session()->regenerate(); } catch (\Throwable $e) { /* ignore */ }
                         return redirect()->route('user_dashboard')->with('success', 'Login Successful');
                     } else {
                         return redirect()->back()->with('error', 'Invalid credentials!');
@@ -84,6 +98,8 @@ class LoginController extends Controller
                     }
                     $credentials = ['email' => $username, 'password' => $password];
                     if (auth()->guard($role['guard'])->attempt($credentials)) {
+                        // regenerate session id for the newly authenticated user
+                        try { $request->session()->regenerate(); } catch (\Throwable $e) { /* ignore */ }
                         return redirect()->route($role['dashboard'])->with('success', 'Login Successful');
                     } else {
                         return redirect()->back()->with('error', 'Invalid credentials!');

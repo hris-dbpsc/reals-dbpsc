@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Add user_clock_in route to routes/web.php",
+			"type": "shell",
+			"command": "awk 'BEGIN{print \"\"}{print}' routes/web.php > /tmp/routes_web_php && awk 'NR==1,NR==20000{print}' /tmp/routes_web_php > /tmp/routes_web_php2 && mv /tmp/routes_web_php2 routes/web.php && echo \"\\n// User TimeLog routes\\nRoute::post('/user/timelog/clock-in', [App\\\\Http\\\\Controllers\\\\Application\\\\TimeLogController::class, 'user_clock_in'])->name('user_clock_in');\" >> routes/web.php && php -l routes/web.php || true;",
+			"args": [],
+			"group": "none",
+			"isBackground": false,
+			"problemMatcher": [
+				"$php"
+			],
+			"explanation": "Append a POST route for user_clock_in to routes/web.php and validate syntax with php -l."
+		}
+	]
+}
